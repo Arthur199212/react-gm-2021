@@ -1,5 +1,5 @@
 # Movie Search App
-> React Global Mentoring Programm 2021
+> React Global Mentoring Program 2021
 
 ## Quick Start
 1. Open a Terminal window

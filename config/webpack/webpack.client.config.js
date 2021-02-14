@@ -20,6 +20,14 @@ const babelLoader = {
   }
 }
 
+const fileLoader = {
+  loader: 'file-loader',
+  options: {
+    name: '[hash].[ext]',
+    outputPath: 'assets'
+  }
+}
+
 module.exports = ({ ROOT_PATH, isProd }) => {
   const DIST_CLIENT_PATH = path.resolve(__dirname, ROOT_PATH, './dist/client')
 
@@ -65,7 +73,7 @@ module.exports = ({ ROOT_PATH, isProd }) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: DIST_CLIENT_PATH
+                publicPath: ''
               }
             },
             'css-loader',
@@ -81,12 +89,12 @@ module.exports = ({ ROOT_PATH, isProd }) => {
           ]
         },
         {
-          test: /\.(png|jpe?g|gif)$/i,
-          use: ['file-loader']
+          test: /\.(png|jpe?g|gif|svg)$/i,
+          use: [fileLoader]
         },
         {
           test: /\.(eot|woff|woff2|ttf)([?]?.*)$/,
-          use: ['file-loader']
+          use: [fileLoader]
         }
       ]
     },
@@ -95,6 +103,7 @@ module.exports = ({ ROOT_PATH, isProd }) => {
         filename: 'index.css'
       }),
       new HtmlWebpackPlugin({
+        favicon: path.resolve(__dirname, ROOT_PATH, './src/assets/pics/favicon.png'),
         template: path.resolve(__dirname, ROOT_PATH, './src/index.html')
       })
     ]

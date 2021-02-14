@@ -10,7 +10,16 @@ const CLIENT_FOLDER_PATH = '../client'
 
 const app = express()
 
-app.use(helmet())
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'img-src': ["'self'", 'image.tmdb.org']
+      }
+    }
+  })
+)
 
 app.use(
   cors({

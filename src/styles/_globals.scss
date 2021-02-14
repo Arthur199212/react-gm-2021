@@ -1,3 +1,5 @@
+@import 'variables';
+
 html,
 body,
 div,
@@ -79,45 +81,93 @@ time,
 mark,
 audio,
 video {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
   margin: 0;
   padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
   vertical-align: baseline;
 }
 
+html,
 body {
+  height: 100%;
+}
+
+body {
+  background-color: $deepGray;
+  color: $white;
+  display: flex;
+  flex-direction: column;
   font-family: 'Roboto', 'Open Sans', sans-serif;
-  font-weight: 400;
+  font-weight: $regular;
 }
 
 button {
-  border: none;
-  margin: 0;
-  padding: 0;
-  width: auto;
-  overflow: visible;
-
+  /* Corrects inability to style clickable `input` types in iOS */
+  -webkit-appearance: none;
   background: transparent;
+  border: none;
 
   /* inherit font & color from ancestor */
   color: inherit;
   font: inherit;
 
-  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-  line-height: normal;
-
   /* Corrects font smoothing for webkit */
   -webkit-font-smoothing: inherit;
   -moz-osx-font-smoothing: inherit;
 
-  /* Corrects inability to style clickable `input` types in iOS */
-  -webkit-appearance: none;
+  /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+  line-height: normal;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  width: auto;
 
   /* Remove excess padding and border in Firefox 4+ */
   &::-moz-focus-inner {
     border: 0;
     padding: 0;
   }
+}
+
+// GLOBAL CUSTOM STYLES
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  max-width: 19rem;
+  width: 100%;
+
+  @include small-screen {
+    max-width: 33rem;
+  }
+
+  @include medium-screen {
+    max-width: 46rem;
+  }
+
+  @include large-screen {
+    max-width: 60rem;
+  }
+
+  @include extra-large-screen {
+    max-width: 72rem;
+  }
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

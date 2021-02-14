@@ -1,0 +1,15 @@
+@import 'variables';
+
+.card-media {
+  border-radius: 5px;
+  height: 27rem;
+  user-select: none;
+  width: 18rem;
+
+  &[class*='img-error'] {
+    align-items: center;
+    border: 1px $paleGray solid;
+    display: flex;
+    justify-content: center;
+  }
+}

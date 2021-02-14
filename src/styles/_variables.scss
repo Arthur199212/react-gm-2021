@@ -1,3 +1,66 @@
 // COLORS
 $black: #000000;
 $white: #ffffff;
+
+$paleGray: #c9c9c9;
+$gray: #909090;
+$deepGray: #252525;
+$deepGray2: #1e1e1e;
+
+$paleCrimson: #ed6493;
+$lightCrimson: #f50057;
+$crimson: #c2185b;
+$deepCrimson: #911144;
+
+// FONT SIZES
+$bold: 700;
+$light: 300;
+$regular: 400;
+
+// SCREEN SIZES
+$extraSmall: 575px;
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$extraLarge: 1200px;
+
+// MIXINS
+@mixin button {
+  align-items: center;
+  border-radius: 0;
+  color: $crimson;
+  cursor: pointer;
+  display: flex;
+  font-size: 0.9rem;
+  font-weight: $bold;
+  justify-content: center;
+  padding: 1rem 1.2rem;
+  transition: 0.1s;
+  user-select: none;
+
+  &:hover {
+    background-color: $crimson;
+    border-color: $crimson;
+    color: $white;
+  }
+}
+
+@mixin extra-small-screen {
+  @media (max-width: $extraSmall) { @content; }
+}
+
+@mixin small-screen {
+  @media (min-width: $small) { @content; }
+}
+
+@mixin medium-screen {
+  @media (min-width: $medium) { @content; }
+}
+
+@mixin large-screen {
+  @media (min-width: $large) { @content; }
+}
+
+@mixin extra-large-screen {
+  @media (min-width: $extraLarge) { @content; }
+}

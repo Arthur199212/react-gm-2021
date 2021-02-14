@@ -1,0 +1,93 @@
+@import 'variables';
+
+@mixin description {
+  color: $paleGray;
+  font-size: 0.9rem;
+  font-weight: $regular;
+  margin-top: 0.4rem;
+}
+
+.card {
+  margin: 1rem;
+  position: relative;
+  width: 18rem;
+
+  @include small-screen {
+    width: 14rem;
+  }
+
+  @include medium-screen {
+    width: 13rem;
+  }
+
+  @include large-screen {
+    width: 13rem;
+  }
+
+  @include extra-large-screen {
+    width: 16rem;
+  }
+
+  .show-more-btn {
+    display: none;
+
+    &:hover {
+      display: flex;
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .card-media {
+    &:hover ~ .show-more-btn {
+      display: flex;
+    }
+
+    @include small-screen {
+      height: 21rem;
+      width: 14rem;
+    }
+
+    @include medium-screen {
+      height: 19.5rem;
+      width: 13rem;
+    }
+
+    @include large-screen {
+      height: 19.5rem;
+      width: 13rem;
+    }
+
+    @include extra-large-screen {
+      height: 24rem;
+      width: 16rem;
+    }
+  }
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: $bold;
+    margin-top: 1.2rem;
+  }
+
+  .description {
+    @include description;
+  }
+
+  .release {
+    @include description;
+  }
+
+  .rating-icon {
+    color: #e6b91e;
+    margin-left: 0.5rem;
+  }
+
+  .rating-value {
+    margin-left: 0.4rem;
+  }
+}
