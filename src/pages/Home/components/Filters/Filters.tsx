@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react'
 import { Button, Dropdown, DropdownItem, Tabs, TabItem } from '@app/components'
 import { useClickOutside } from '@app/hooks'
 import { OPTIONS, TABS } from '@app/tests/mock-data'
+import { FiltersTestIds } from './Filters.constants'
 import './Filters.scss'
 
 const Filters = () => {
@@ -29,6 +30,7 @@ const Filters = () => {
         <span className='label'>SORT BY</span>
         <div className='dropdown-menu'>
           <Button
+            data-testid={FiltersTestIds.dropdownBtn}
             className={`dropdown-button ${isOpen ? 'open' : 'close'}`}
             onClick={() => setIsOpen(!isOpen)}
           >

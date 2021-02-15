@@ -110,7 +110,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
-      "npm run lint",
+      "npm run lint:source",
+      "npm run lint:style",
       "npm run test:staged",
       "git add"
     ]
