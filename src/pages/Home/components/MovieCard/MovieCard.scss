@@ -1,0 +1,53 @@
+@import 'variables';
+
+@mixin description {
+  color: $paleGray;
+  font-size: 0.9rem;
+  font-weight: $regular;
+  margin-top: 0.4rem;
+}
+
+.app-card {
+  .app-show-more-button {
+    display: none;
+
+    &:hover {
+      display: flex;
+    }
+  }
+
+  .app-dropdown {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+
+  .app-card-media {
+    &:hover ~ .app-show-more-button {
+      display: flex;
+    }
+  }
+
+  .title {
+    font-size: 1.2rem;
+    font-weight: $bold;
+    margin-top: 1.2rem;
+  }
+
+  .description {
+    @include description;
+  }
+
+  .release {
+    @include description;
+  }
+
+  .rating-icon {
+    color: #e6b91e;
+    margin-left: 0.5rem;
+  }
+
+  .rating-value {
+    margin-left: 0.4rem;
+  }
+}

@@ -6,14 +6,8 @@ type ShowMoreButtonProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTM
   open?: boolean
 }
 
-const ShowMoreButton = ({ open, ...rest }: ShowMoreButtonProps) => (
-  <div
-    data-testid={ShowMoreButtonTestIds.button}
-    className={`show-more-btn ${open ? 'open' : 'close'}`}
-    {...rest}
-  >
+export const ShowMoreButton = ({ open, ...rest }: ShowMoreButtonProps) => (
+  <div data-testid={ShowMoreButtonTestIds.BUTTON} className='app-show-more-button' {...rest}>
     <i className='fas fa-ellipsis-v'></i>
   </div>
 )
-
-export default ShowMoreButton

@@ -1,0 +1,20 @@
+@import 'variables';
+
+.app-small-modal-container {
+  @include modal-container;
+
+  height: 100%;
+  width: 100%;
+
+  .app-small-modal {
+    @include modal;
+
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: start;
+    max-width: 30rem;
+    padding: 1.5rem;
+    position: relative;
+  }
+}

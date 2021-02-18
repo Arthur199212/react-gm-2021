@@ -1,10 +1,11 @@
-import React, { DetailedHTMLProps, LiHTMLAttributes, ReactNode } from 'react'
+import React, { DetailedHTMLProps, LiHTMLAttributes } from 'react'
+import classNames from 'classnames'
 import './TabItem.scss'
 
 type TabsProps = DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement> & {
-  children: ReactNode
+  active: boolean
 }
 
-const TabItem = ({ ...props }: TabsProps) => <li className='tab' {...props} />
-
-export default TabItem
+export const TabItem = ({ active, ...rest }: TabsProps) => (
+  <li className={classNames('app-tab', { active })} {...rest} />
+)

@@ -1,0 +1,14 @@
+@import 'variables';
+
+.app-textarea-form-field {
+  @include form-field;
+
+  .app-textarea-form-field-label {
+    @include form-field-label;
+  }
+
+  .app-textarea {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}

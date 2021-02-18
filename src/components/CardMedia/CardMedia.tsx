@@ -2,19 +2,19 @@ import React, { DetailedHTMLProps, ImgHTMLAttributes, useState } from 'react'
 import './CardMedia.scss'
 
 type CardMediaProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
-  imageUrl: string
+  image: string
   title: string
 }
 
-const CardMedia = ({ imageUrl, title, ...rest }: CardMediaProps) => {
+export const CardMedia = ({ image, title, ...rest }: CardMediaProps) => {
   const [imgError, setImgError] = useState<boolean>(false)
 
   if (imgError) return <div className='image img-error'>Image Not Found</div>
 
   return (
     <img
-      className='card-media'
-      src={imageUrl}
+      className='app-card-media'
+      src={image}
       alt={title}
       draggable='false'
       onError={() => setImgError(true)}
@@ -22,5 +22,3 @@ const CardMedia = ({ imageUrl, title, ...rest }: CardMediaProps) => {
     />
   )
 }
-
-export default CardMedia

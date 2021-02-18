@@ -1,3 +1,3 @@
 export enum DropdownItemTestIds {
-  dropdownItem = 'dropdown-item'
+  DROPDOWN_ITEM = 'dropdown-item'
 }

@@ -1,0 +1,9 @@
+@import 'variables';
+
+.app-textarea {
+  @include text-field-box;
+
+  &[class*='no-resize'] {
+    resize: none;
+  }
+}

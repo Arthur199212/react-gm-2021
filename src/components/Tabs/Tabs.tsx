@@ -5,6 +5,4 @@ type TabsProps = DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListEl
   children: ReactNode
 }
 
-const Tabs = ({ ...props }: TabsProps) => <ul className='tabs' {...props} />
-
-export default Tabs
+export const Tabs = (props: TabsProps) => <ul className='app-tabs' {...props} />

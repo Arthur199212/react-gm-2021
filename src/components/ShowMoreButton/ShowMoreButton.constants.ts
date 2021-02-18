@@ -1,3 +1,3 @@
 export enum ShowMoreButtonTestIds {
-  button = 'show-more-btn'
+  BUTTON = 'show-more-btn'
 }

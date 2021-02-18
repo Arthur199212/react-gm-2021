@@ -22,12 +22,6 @@
     flex-wrap: wrap;
   }
 
-  .tabs {
-    @include extra-small-screen {
-      flex-wrap: wrap;
-    }
-  }
-
   .dropdown-container {
     display: flex;
 
@@ -53,15 +47,14 @@
     .dropdown-menu {
       position: relative;
 
-      .dropdown-button {
-        @include button;
-
+      .app-button {
         border: 1px $paleCrimson solid;
         border-radius: 5px;
         color: $white;
         justify-content: left;
         padding: 1rem 1.7rem 1rem 1.2rem;
         position: relative;
+        text-transform: uppercase;
         width: 6.5rem;
 
         &:hover {
@@ -88,9 +81,13 @@
         }
       }
 
-      .dropdown {
+      .app-dropdown {
         width: 9.5rem;
         z-index: 1;
+
+        .app-dropdown-item {
+          text-transform: uppercase;
+        }
       }
     }
   }
