@@ -1,5 +1,6 @@
 import React, { ReactNode, RefObject, useEffect } from 'react'
 import classNames from 'classnames'
+import { ModalTestIds } from './Modal.contants'
 import './Modal.scss'
 
 type ModalProps = {
@@ -21,7 +22,10 @@ export const Modal = ({ children, disableScroll = true, elRef = null, open }: Mo
   }, [disableScroll, open, elRef])
 
   return (
-    <div className={classNames('app-modal-container', { open })}>
+    <div
+      className={classNames('app-modal-container', { open })}
+      data-testid={ModalTestIds.CONTAINER}
+    >
       <div className='app-modal' ref={elRef}>
         {children}
       </div>

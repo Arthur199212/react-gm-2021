@@ -1,5 +1,6 @@
 import React, { ReactNode, RefObject, useEffect } from 'react'
 import classNames from 'classnames'
+import { SmallModalTestIds } from './SmallModal.contants'
 import './SmallModal.scss'
 
 type SmallModalProps = {
@@ -26,7 +27,10 @@ export const SmallModal = ({
   }, [disableScroll, open, elRef])
 
   return (
-    <div className={classNames('app-small-modal-container', { open })}>
+    <div
+      className={classNames('app-small-modal-container', { open })}
+      data-testid={SmallModalTestIds.CONTAINER}
+    >
       <div className='app-small-modal' ref={elRef}>
         {children}
       </div>

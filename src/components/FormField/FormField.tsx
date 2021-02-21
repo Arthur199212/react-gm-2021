@@ -1,8 +1,11 @@
-import React, { ChangeEvent } from 'react'
+import React, { ChangeEvent, DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import { InputBox } from '@app/components'
 import './FormField.scss'
 
-export type FormFieldProps = {
+export type FormFieldProps = DetailedHTMLProps<
+  InputHTMLAttributes<HTMLInputElement>,
+  HTMLInputElement
+> & {
   label: string
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
   placeholder?: string

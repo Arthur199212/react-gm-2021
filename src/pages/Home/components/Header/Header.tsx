@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal } from '@app/components'
 import { Form, FormContent } from '@app/pages/Home/components'
+import { HeaderTestIds } from './Header.constants'
 import './Header.scss'
 
 export const Header = () => {
@@ -18,7 +19,9 @@ export const Header = () => {
     <header className='header'>
       <div className='header-container container'>
         <a className='title'>MovieSearchApp</a>
-        <Button onClick={handleClick}>ADD MOVIE</Button>
+        <Button data-testid={HeaderTestIds.BUTTON} onClick={handleClick}>
+          ADD MOVIE
+        </Button>
         <Modal open={isOpen}>
           <Form content={FormContent.CREATE} onClose={handleClose} />
         </Modal>

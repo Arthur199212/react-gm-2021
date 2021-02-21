@@ -6,23 +6,23 @@ export enum FormContent {
 }
 
 export const GENRES = [
-  // 'action',
-  // 'adventure',
+  'action',
+  'adventure',
   'comedy',
   'crime',
-  // 'disaster',
+  'disaster',
   'documentary',
-  // 'drama',
-  // 'fantasy',
-  // 'history',
-  'horror'
-  // 'mystery',
-  // 'psychological',
-  // 'romance',
-  // 'satire',
-  // 'thriller',
-  // 'war',
-  // 'western'
+  'drama',
+  'fantasy',
+  'history',
+  'horror',
+  'mystery',
+  'psychological',
+  'romance',
+  'satire',
+  'thriller',
+  'war',
+  'western'
 ]
 
 export const INITIAL_STATE: FormState = {
@@ -32,4 +32,8 @@ export const INITIAL_STATE: FormState = {
   releaseDate: '',
   title: '',
   url: ''
+}
+
+export enum FormTestIds {
+  CLOSE_ICON = 'form-close-icon'
 }

@@ -8,7 +8,7 @@ import {
 } from '@app/components'
 import { useClickOutside } from '@app/hooks'
 import { capitalizeStr } from '@app/utils'
-import { FormContent, GENRES, INITIAL_STATE } from './Form.constants'
+import { FormContent, FormTestIds, GENRES, INITIAL_STATE } from './Form.constants'
 import './Form.scss'
 
 export type FormState = {
@@ -70,9 +70,14 @@ export const Form = ({ content, onClose }: FormProps) => {
   return (
     <div className='form-container'>
       <h5 className='form-header'>{content === FormContent.CREATE ? 'ADD MOVIE' : 'EDIT MOVIE'}</h5>
-      <i className='fas fa-times close-icon' onClick={() => onClose()}></i>
+      <i
+        className='fas fa-times close-icon'
+        onClick={() => onClose()}
+        data-testid={FormTestIds.CLOSE_ICON}
+      ></i>
       {content === FormContent.EDIT && (
         <FormField
+          aria-label='movie-id'
           label='MOVIE ID'
           onChange={handleOnChange('movieId')}
           placeholder='Movie ID'
@@ -80,18 +85,21 @@ export const Form = ({ content, onClose }: FormProps) => {
         />
       )}
       <FormField
+        aria-label='title'
         label='TITLE'
         onChange={handleOnChange('title')}
         placeholder='Title'
         value={form.title}
       />
       <FormField
+        aria-label='release-date'
         label='RELEASE DATE'
         onChange={handleOnChange('releaseDate')}
         type='date'
         value={form.releaseDate}
       />
       <FormField
+        aria-label='movie-url'
         label='MOVIE URL'
         onChange={handleOnChange('url')}
         placeholder='Movie Poster URL'
@@ -99,6 +107,7 @@ export const Form = ({ content, onClose }: FormProps) => {
         value={form.url}
       />
       <MultipleSelectionFormField
+        aria-label='genre'
         label='GENRE'
         onChange={event => {
           event.preventDefault()
@@ -115,6 +124,7 @@ export const Form = ({ content, onClose }: FormProps) => {
               <label className='label' htmlFor={genre}>
                 {genre}
                 <input
+                  aria-label={genre}
                   className='checkbox'
                   type='checkbox'
                   name={genre}
@@ -127,12 +137,14 @@ export const Form = ({ content, onClose }: FormProps) => {
         </SmallModal>
       </MultipleSelectionFormField>
       <TextareaFormField
+        aria-label='overview'
         label='OVERVIEW'
         onChange={handleOnChange('overview')}
         placeholder='Overview'
         value={form.overview}
       />
       <FormField
+        aria-label='runtime'
         label='RUNTIME'
         onChange={handleOnChange('runtime')}
         placeholder='Runtime'
@@ -141,6 +153,7 @@ export const Form = ({ content, onClose }: FormProps) => {
       />
       <div className='form-actions-container'>
         <Button
+          aria-label='reset'
           onClick={() => {
             onClose()
             setForm(INITIAL_STATE)
@@ -149,6 +162,7 @@ export const Form = ({ content, onClose }: FormProps) => {
           RESET
         </Button>
         <Button
+          aria-label='submit'
           onClick={() => {
             onClose()
             console.log(form)
