@@ -44,7 +44,8 @@ module.exports = ({ ROOT_PATH, isProd }) => {
     output: {
       path: DIST_CLIENT_PATH,
       filename: 'index.js',
-      devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]'
+      devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]',
+      publicPath: '/'
     },
     optimization: {
       minimize: isProd,
@@ -73,7 +74,7 @@ module.exports = ({ ROOT_PATH, isProd }) => {
             {
               loader: MiniCssExtractPlugin.loader,
               options: {
-                publicPath: ''
+                publicPath: '/'
               }
             },
             'css-loader',

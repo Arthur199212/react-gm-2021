@@ -1,7 +1,0 @@
-export * from './DeleteModalContent'
-export * from './Filters'
-export * from './Form'
-export * from './Header'
-export * from './MovieCard'
-export * from './NoSearchResults'
-export * from './SearchResults'

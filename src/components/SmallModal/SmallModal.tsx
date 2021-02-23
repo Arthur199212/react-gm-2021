@@ -1,5 +1,6 @@
-import React, { ReactNode, RefObject, useEffect } from 'react'
+import React, { ReactNode, RefObject } from 'react'
 import classNames from 'classnames'
+import { useScrollLock } from '@app/hooks'
 import { SmallModalTestIds } from './SmallModal.contants'
 import './SmallModal.scss'
 
@@ -7,24 +8,16 @@ type SmallModalProps = {
   children?: ReactNode
   elRef?: RefObject<HTMLDivElement> | null
   open: boolean
-  disableScroll?: boolean
+  scrollable?: boolean
 }
 
 export const SmallModal = ({
   children,
-  disableScroll = true,
   elRef = null,
-  open
+  open,
+  scrollable = true
 }: SmallModalProps) => {
-  useEffect(() => {
-    if (!disableScroll) return
-
-    if (open) {
-      document.getElementsByTagName('body')[0].style.overflow = 'hidden'
-    } else {
-      document.getElementsByTagName('body')[0].style.overflow = 'auto'
-    }
-  }, [disableScroll, open, elRef])
+  useScrollLock(elRef, open, scrollable)
 
   return (
     <div
