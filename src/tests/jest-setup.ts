@@ -1,8 +1,12 @@
 import '@testing-library/jest-dom/extend-expect'
-import { cleanup } from '@testing-library/react'
-import { cleanup as cleanupHooks } from '@testing-library/react-hooks'
+import 'isomorphic-fetch'
+import { server } from './mocks/server'
 
-afterEach(() => {
-  cleanup()
-  cleanupHooks()
+// scrollTo is not implemented in `jsdom`
+const noop = () => {}
+Object.defineProperty(window, 'scrollTo', { value: noop, writable: true })
+
+// start & stop mock service worker
+beforeAll(() => {
+  server.listen()
 })

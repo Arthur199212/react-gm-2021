@@ -3,6 +3,7 @@ import cors from 'cors'
 import express from 'express'
 import helmet from 'helmet'
 import path from 'path'
+import { API_URL } from '@app/config'
 import { APP_PORT } from './config'
 import { notFound, serverError } from './middlewares'
 
@@ -15,7 +16,8 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         ...helmet.contentSecurityPolicy.getDefaultDirectives(),
-        'img-src': ["'self'", 'image.tmdb.org']
+        'default-src': ["'self'", API_URL],
+        'img-src': ['*']
       }
     }
   })

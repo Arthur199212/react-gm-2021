@@ -5,7 +5,8 @@ import { Search, Movie, NotFound } from '@app/pages'
 export enum RoutePaths {
   MOVIE = '/movie/:movieId',
   ROOT = '/',
-  SEARCH = '/search'
+  SEARCH = '/search',
+  SEARCH_RESULTS = '/search/:query'
 }
 
 export const AppRoutes = () => (
@@ -16,7 +17,10 @@ export const AppRoutes = () => (
     <Route path={RoutePaths.MOVIE}>
       <Movie />
     </Route>
-    <Route path={RoutePaths.SEARCH}>
+    <Route exact path={RoutePaths.SEARCH}>
+      <Search />
+    </Route>
+    <Route path={RoutePaths.SEARCH_RESULTS}>
       <Search />
     </Route>
     <Route path={RoutePaths.ROOT}>

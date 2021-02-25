@@ -13,10 +13,10 @@ describe('Filters Component', () => {
   it('should show dropdown if ShowMoreButton was chicked', () => {
     const { getByTestId, getAllByTestId } = render(
       <Filters
-        filter={TABS[0]}
-        onFilterSelect={() => {}}
-        onSortBySelect={() => {}}
-        sortBy={SORT_BY_OPTIONS[0]}
+      // filter={TABS[0]}
+      // onFilterSelect={() => {}}
+      // onSortBySelect={() => {}}
+      // sortBy={SORT_BY_OPTIONS[0]}
       />
     )
 

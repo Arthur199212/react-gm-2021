@@ -6,15 +6,15 @@ import {
   DropdownItemTestIds,
   ModalTestIds,
   MovieCard,
+  MovieFormTestIds,
   ShowMoreButtonTestIds,
   SmallModalTestIds
 } from '@app/components'
-import { FormTestIds } from '../../Form'
 
 describe('MovieCard Component', () => {
   const mockProps = {
     description: 'test description',
-    id: '00001',
+    id: 1,
     image: 'test-image-url',
     rating: 7,
     release: '2021',
@@ -69,7 +69,7 @@ describe('MovieCard Component', () => {
   it('while clicking on close icon Edit modal should close', () => {
     setup()
 
-    fireEvent.click(screen.getByTestId(FormTestIds.CLOSE_ICON))
+    fireEvent.click(screen.getByTestId(MovieFormTestIds.CLOSE_ICON))
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).not.toContain('open')
   })

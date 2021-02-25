@@ -2,11 +2,11 @@ import React, { useCallback, useRef, useState } from 'react'
 import {
   Card,
   CardMedia,
-  DeleteModalContent,
+  DeleteMovieForm,
   Dropdown,
   DropdownItem,
-  Form,
-  FormContent,
+  MovieForm,
+  MovieFormContent,
   Modal,
   SmallModal,
   ShowMoreButton
@@ -15,9 +15,14 @@ import { useClickOutside } from '@app/hooks'
 import './MovieCard.scss'
 import { Link } from 'react-router-dom'
 
+enum MovieCardDropdownType {
+  DELETE = 'delete',
+  EDIT = 'edit'
+}
+
 type MovieCardProps = {
   description: string
-  id: string
+  id: number
   image: string
   rating: number
   release: string
@@ -37,7 +42,7 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
   const handleClick = (str: string) => {
     setDropdownOpen(false)
 
-    if (str === 'edit') {
+    if (str === MovieCardDropdownType.EDIT) {
       setEditModalOpen(true)
       return
     }
@@ -54,8 +59,12 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
           </Link>
           <ShowMoreButton open={dropdownOpen} onClick={() => setDropdownOpen(!dropdownOpen)} />
           <Dropdown elRef={dropdownRef} open={dropdownOpen}>
-            <DropdownItem onClick={() => handleClick('edit')}>Edit</DropdownItem>
-            <DropdownItem onClick={() => handleClick('delete')}>Delete</DropdownItem>
+            <DropdownItem onClick={() => handleClick(MovieCardDropdownType.EDIT)}>
+              Edit
+            </DropdownItem>
+            <DropdownItem onClick={() => handleClick(MovieCardDropdownType.DELETE)}>
+              Delete
+            </DropdownItem>
           </Dropdown>
         </div>
         <Link to={`/movie/${id}`}>
@@ -65,14 +74,19 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
         <div className='release text-truncate'>
           {release}
           <i className='rating-icon fas fa-star'></i>
-          <span className='rating-value'>{rating}/10</span>
+          <span className='rating-value'>{rating || 0}/10</span>
         </div>
       </Card>
       <Modal open={editModalOpen}>
-        <Form content={FormContent.EDIT} onClose={() => setEditModalOpen(false)} />
+        <MovieForm
+          content={MovieFormContent.EDIT}
+          movieId={String(id)}
+          onClose={() => setEditModalOpen(false)}
+          open={editModalOpen}
+        />
       </Modal>
       <SmallModal open={deleteModalOpen}>
-        <DeleteModalContent onClose={() => setDeleteModalOpen(false)} />
+        <DeleteMovieForm movieId={String(id)} onClose={() => setDeleteModalOpen(false)} />
       </SmallModal>
     </>
   )

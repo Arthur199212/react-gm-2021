@@ -1,18 +1,22 @@
 import React, { useState, useRef, useCallback } from 'react'
 import { Button, Dropdown, DropdownItem, Tabs, TabItem } from '@app/components'
-import { useClickOutside } from '@app/hooks'
+import { useAppDispatch, useAppSelector, useClickOutside } from '@app/hooks'
+import {
+  selectSearchFilter,
+  selectSortBy,
+  setFilter,
+  setSortBy,
+  SortBy
+} from '@app/pages/Search/store'
 import { toKebabCase } from '@app/utils'
 import { FiltersTestIds, SORT_BY_OPTIONS, TABS } from './Filters.constants'
 import './Filters.scss'
 
-type FilterProps = {
-  filter: string
-  onFilterSelect: (filter: string) => void
-  onSortBySelect: (sortBy: string) => void
-  sortBy: string
-}
+export const Filters = () => {
+  const dispatch = useAppDispatch()
+  const filter = useAppSelector(selectSearchFilter)
+  const sortBy = useAppSelector(selectSortBy)
 
-export const Filters = ({ filter, onFilterSelect, onSortBySelect, sortBy }: FilterProps) => {
   const dropdownRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -20,9 +24,9 @@ export const Filters = ({ filter, onFilterSelect, onSortBySelect, sortBy }: Filt
 
   useClickOutside(dropdownRef, handleClickOutside, isOpen)
 
-  const handleClick = (str: string) => {
+  const handleClick = (str: SortBy) => {
     setIsOpen(false)
-    onSortBySelect(str)
+    dispatch(setSortBy(str))
   }
 
   return (
@@ -32,7 +36,7 @@ export const Filters = ({ filter, onFilterSelect, onSortBySelect, sortBy }: Filt
           <TabItem
             key={`tab-${name}`}
             active={name === filter}
-            onClick={() => onFilterSelect(name)}
+            onClick={() => dispatch(setFilter(name))}
           >
             {name}
           </TabItem>

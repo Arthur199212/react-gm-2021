@@ -1,26 +1,31 @@
-import React, { useState } from 'react'
-import { Filters, Footer, SearchResults, SORT_BY_OPTIONS, TABS } from '@app/components'
-import { MOVIE } from '@app/tests/mock-data'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { Filters, Footer, SearchResults } from '@app/components'
+import { useAppDispatch } from '@app/hooks'
 import { Header, MovieDetails } from './components'
+import { fetchMovieThunk } from './store'
 import './Movie.scss'
 
 export const Movie = () => {
-  const [filter, setFilter] = useState<string>(TABS[0])
-  const [sortBy, setSortBy] = useState<string>(SORT_BY_OPTIONS[0])
+  const dispatch = useAppDispatch()
+  const { movieId } = useParams<{ movieId: string }>()
+
+  useEffect(() => {
+    if (movieId) {
+      window.scrollTo(0, 0)
+
+      dispatch(fetchMovieThunk(movieId))
+    }
+  }, [dispatch, movieId])
 
   return (
     <>
       <div className='app-movie-page content'>
         <Header />
         <main className='main'>
-          <MovieDetails movie={MOVIE} />
+          <MovieDetails />
           <div className='container'>
-            <Filters
-              filter={filter}
-              onFilterSelect={setFilter}
-              onSortBySelect={setSortBy}
-              sortBy={sortBy}
-            />
+            <Filters />
             <SearchResults />
           </div>
         </main>

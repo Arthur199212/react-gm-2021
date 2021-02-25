@@ -1,36 +1,45 @@
 import React from 'react'
-import { Card, CardMedia } from '@app/components'
+import { Card, CardMedia, DualRingSpinner } from '@app/components'
+import { useAppSelector } from '@app/hooks'
+import { MovieStatus, selectMovie, selectMovieStatus } from '@app/pages/Movie/store'
 import './MovieDetails.scss'
 
-type MovieDetailsProps = {
-  movie: {
-    image: string
-    overview: string
-    rating: number
-    releaseDate: string
-    runtime: number
-    tagline: string
-    title: string
-  }
-}
+export const MovieDetails = () => {
+  const movie = useAppSelector(selectMovie)
+  const status = useAppSelector(selectMovieStatus)
 
-export const MovieDetails = ({
-  movie: { image, overview, rating, releaseDate, runtime, tagline, title }
-}: MovieDetailsProps) => (
-  <div className='movie-details-container container'>
-    <Card>
-      <CardMedia image={image} title={'Star Wars: The Last Jedi'} />
-    </Card>
-    <div className='movie-details'>
-      <h2 className='title'>{title}</h2>
-      <h5 className='tagline'>{tagline}</h5>
-      <span className='release-date'>{releaseDate}</span>
-      <span className='runtime'>{runtime} MIN</span>
-      <div className='rating'>
-        <i className='rating-icon fas fa-star'></i>
-        {rating}/10
+  if (status === MovieStatus.LOADING) {
+    return (
+      <div className='movie-details-container container'>
+        <DualRingSpinner />
       </div>
-      <p className='overview'>{overview}</p>
+    )
+  }
+
+  if (status === MovieStatus.NO_RESULTS || status === MovieStatus.ERROR || !movie) {
+    return (
+      <div className='movie-details-container container'>
+        <h5 className='error-message'>Sorry, but such a movie was not found.</h5>
+      </div>
+    )
+  }
+
+  return (
+    <div className='movie-details-container container'>
+      <Card>
+        <CardMedia image={movie.poster_path} title={'Star Wars: The Last Jedi'} />
+      </Card>
+      <div className='movie-details'>
+        <h2 className='title'>{movie.title}</h2>
+        <h5 className='tagline'>{movie.tagline}</h5>
+        <span className='release-date'>{movie.release_date}</span>
+        <span className='runtime'>{movie.runtime} MIN</span>
+        <div className='rating'>
+          <i className='rating-icon fas fa-star'></i>
+          {movie.vote_average || 0}/10
+        </div>
+        <p className='overview'>{movie.overview}</p>
+      </div>
     </div>
-  </div>
-)
+  )
+}

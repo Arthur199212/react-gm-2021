@@ -8,6 +8,7 @@ const babelLoader = {
   loader: 'babel-loader',
   options: {
     cacheDirectory: true,
+    plugins: ['@babel/plugin-transform-runtime', '@babel/plugin-transform-modules-commonjs'],
     presets: [
       '@babel/preset-react',
       [

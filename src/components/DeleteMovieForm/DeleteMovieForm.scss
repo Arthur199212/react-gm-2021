@@ -1,0 +1,44 @@
+@import 'variables';
+
+.delete-movie-form-container {
+  width: 100%;
+
+  &[class*='centered'] {
+    display: flex;
+    justify-content: center;
+    margin: 1.5rem 0;
+  }
+
+  .delete-movie-form-header {
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: $bold;
+  }
+
+  .delete-movie-form-text {
+    margin-top: 1.5rem;
+  }
+}
+
+.delete-movie-form-actions-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+
+  .app-button {
+    background-color: $lightCrimson;
+    border: 1px $lightCrimson solid;
+    border-radius: 5px;
+    color: $white;
+    padding: 0.5rem 1.2rem;
+
+    &:hover {
+      @include button-box-shadow;
+
+      background-color: $lightCrimson;
+      border-color: $lightCrimson;
+      color: $white;
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { FormTestIds, ModalTestIds } from '@app/components'
+import { MovieFormTestIds, ModalTestIds } from '@app/components'
 import { Header, HeaderTestIds } from '@app/pages/Search/components'
 
 describe('Header Component', () => {
@@ -23,7 +23,7 @@ describe('Header Component', () => {
   it('modal should be closed on close icon click', () => {
     setup()
 
-    fireEvent.click(screen.getByTestId(FormTestIds.CLOSE_ICON))
+    fireEvent.click(screen.getByTestId(MovieFormTestIds.CLOSE_ICON))
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).not.toContain('open')
   })
