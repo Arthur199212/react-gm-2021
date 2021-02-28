@@ -1,0 +1,14 @@
+@import 'variables';
+
+.dropdown {
+  background-color: $white;
+  display: none;
+  padding: 0.2rem 0;
+  position: absolute;
+  transform: translateY(0);
+  transition: all 2s;
+
+  &[class*='open'] {
+    display: block;
+  }
+}

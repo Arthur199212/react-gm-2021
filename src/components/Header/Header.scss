@@ -1,0 +1,42 @@
+@import 'variables';
+
+.header {
+  align-items: center;
+  background-color: $deepGray2;
+  display: flex;
+  height: 4.5rem;
+  justify-content: center;
+
+  .header-container {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    .title {
+      cursor: pointer;
+      font-size: 1.3rem;
+      font-weight: $bold;
+      user-select: none;
+    }
+
+    .button {
+      @include button;
+
+      border: 1px $deepCrimson solid;
+      border-radius: 5px;
+      color: $lightCrimson;
+      cursor: pointer;
+      font-size: 0.9rem;
+      font-weight: $bold;
+      padding: 0.5rem 1.2rem;
+      transition: 0.1s;
+      user-select: none;
+
+      &:hover {
+        background-color: transparent;
+        border-color: $lightCrimson;
+        color: $lightCrimson;
+      }
+    }
+  }
+}

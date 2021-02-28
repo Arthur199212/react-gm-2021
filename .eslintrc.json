@@ -9,6 +9,7 @@
     "plugin:react/recommended",
     "standard",
     "prettier/@typescript-eslint",
+    "plugin:react-hooks/recommended",
     "plugin:prettier/recommended",
     "plugin:jest/recommended"
   ],
@@ -22,7 +23,9 @@
   },
   "plugins": [
     "react",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "testing-library",
+    "jest-dom"
   ],
   "rules": {
     "jsx-quotes": [
