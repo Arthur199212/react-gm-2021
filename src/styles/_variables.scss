@@ -9,6 +9,7 @@ $deepGray2: #1e1e1e;
 
 $paleCrimson: #ed6493;
 $lightCrimson: #f50057;
+$lightCrimsonWithOpacity: rgba(245, 0, 87, 0.22);
 $crimson: #c2185b;
 $deepCrimson: #911144;
 
@@ -45,6 +46,82 @@ $extraLarge: 1200px;
   }
 }
 
+@mixin button-box-shadow {
+  box-shadow: 0 14px 21px 0 $lightCrimsonWithOpacity;
+}
+
+@mixin form-field {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+@mixin form-field-label {
+  color: $lightCrimson;
+  font-size: 0.9rem;
+  font-weight: $bold;
+  width: 100%;
+}
+
+@mixin modal {
+  background-color: $deepGray;
+  box-sizing: border-box;
+  height: 100vh;
+  left: 0;
+  max-height: 100vh;
+  overflow: auto;
+  padding: 3rem;
+  position: absolute;
+  top: 0;
+  width: 100vw;
+}
+
+@mixin modal-container {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
+
+  &[class*='open'] {
+    display: flex;
+  }
+}
+
+@mixin text-field-box {
+  background-color: $deepGray;
+  border: 1px $gray solid;
+  border-radius: 5px;
+  box-shadow: none;
+  color: $white;
+  font-size: 1.2rem;
+  font-weight: $regular;
+  outline: 0;
+  padding: 0.7rem 1rem;
+  position: relative;
+  width: 30rem;
+
+  &:hover {
+    border-color: $paleGray;
+  }
+
+  &:focus {
+    border-color: $paleGray;
+  }
+
+  &:placeholder-shown {
+    color: $paleGray;
+    font-weight: $light;
+  }
+}
+
+// SCREEN SIZES MIXINS
 @mixin extra-small-screen {
   @media (max-width: $extraSmall) { @content; }
 }

@@ -1,0 +1,14 @@
+@import 'variables';
+
+.app-form-field {
+  @include form-field;
+
+  .app-form-field-label {
+    @include form-field-label;
+  }
+
+  .app-input-box {
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+}

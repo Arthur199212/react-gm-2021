@@ -4,8 +4,6 @@ import './DropdownItem.scss'
 
 type DropdownItemProps = DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 
-const DropdownItem = ({ ...props }: DropdownItemProps) => (
-  <li data-testid={DropdownItemTestIds.dropdownItem} className='button' {...props} />
+export const DropdownItem = (props: DropdownItemProps) => (
+  <li data-testid={DropdownItemTestIds.DROPDOWN_ITEM} className='app-dropdown-item' {...props} />
 )
-
-export default DropdownItem

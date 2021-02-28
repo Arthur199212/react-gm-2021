@@ -1244,6 +1244,13 @@
     "@babel/runtime" "^7.12.5"
     "@testing-library/dom" "^7.28.1"
 
+"@testing-library/user-event@^12.7.1":
+  version "12.7.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-12.7.1.tgz#e1ce931c04a1c65faf28618442d56ba8da887f2c"
+  integrity sha512-COfCkYgcxc+P9+pEAIGlmBuIDjO91Chf9GOBHI8AhIiMyaoOrKVPQny1uf0HIAYNoHKL5slhkqOPP2ZyNaVQGw==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+
 "@types/aria-query@^4.2.0":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@types/aria-query/-/aria-query-4.2.1.tgz#78b5433344e2f92e8b306c06a5622c50c245bf6b"
@@ -1289,6 +1296,11 @@
   dependencies:
     "@types/connect" "*"
     "@types/node" "*"
+
+"@types/classnames@^2.2.11":
+  version "2.2.11"
+  resolved "https://registry.yarnpkg.com/@types/classnames/-/classnames-2.2.11.tgz#2521cc86f69d15c5b90664e4829d84566052c1cf"
+  integrity sha512-2koNhpWm3DgWRp5tpkiJ8JGc1xTn2q0l+jUNUE7oMKXUf5NpI9AIdC4kbjGNFBdHtcxBD18LAksoudAVhFKCjw==
 
 "@types/connect@*":
   version "3.4.34"
@@ -2618,6 +2630,11 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
+
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
 clean-css@^4.2.3:
   version "4.2.3"

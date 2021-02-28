@@ -1,6 +1,6 @@
 @import 'variables';
 
-.card-media {
+.app-card-media {
   border-radius: 5px;
   height: 27rem;
   user-select: none;
@@ -11,5 +11,25 @@
     border: 1px $paleGray solid;
     display: flex;
     justify-content: center;
+  }
+
+  @include small-screen {
+    height: 21rem;
+    width: 14rem;
+  }
+
+  @include medium-screen {
+    height: 19.5rem;
+    width: 13rem;
+  }
+
+  @include large-screen {
+    height: 19.5rem;
+    width: 13rem;
+  }
+
+  @include extra-large-screen {
+    height: 24rem;
+    width: 16rem;
   }
 }

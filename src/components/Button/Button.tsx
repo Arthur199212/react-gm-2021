@@ -3,6 +3,4 @@ import './Button.scss'
 
 type ButtonProps = DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
 
-const Button = ({ ...props }: ButtonProps) => <a className='button' {...props} />
-
-export default Button
+export const Button = (props: ButtonProps) => <a className='app-button' {...props} />

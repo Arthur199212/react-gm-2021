@@ -103,6 +103,11 @@ body {
   font-weight: $regular;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 button {
   /* Corrects inability to style clickable `input` types in iOS */
   -webkit-appearance: none;

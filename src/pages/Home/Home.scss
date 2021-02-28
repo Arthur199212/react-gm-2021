@@ -1,6 +1,6 @@
 @import 'variables';
 
-.home-page {
+.app-home-page {
   .main {
     align-items: center;
     display: flex;
@@ -27,35 +27,7 @@
         flex-wrap: wrap;
       }
 
-      .search-box {
-        background-color: $deepGray;
-        border: 1px $gray solid;
-        border-radius: 5px;
-        box-shadow: none;
-        color: $white;
-        font-size: 1.2rem;
-        font-weight: $regular;
-        outline: 0;
-        padding: 0.7rem 1rem;
-        width: 30rem;
-
-        &:hover {
-          border-color: $paleGray;
-        }
-
-        &:focus {
-          border-color: $paleGray;
-        }
-
-        &:placeholder-shown {
-          color: $paleGray;
-          font-weight: $light;
-        }
-      }
-
-      .button {
-        @include button;
-
+      .app-button {
         background-color: $lightCrimson;
         border: 1px $lightCrimson solid;
         border-radius: 5px;
@@ -70,9 +42,10 @@
         }
 
         &:hover {
+          @include button-box-shadow;
+
           background-color: $lightCrimson;
           border-color: $lightCrimson;
-          box-shadow: 0 14px 21px 0 rgba(245, 0, 87, 0.22);
         }
       }
     }

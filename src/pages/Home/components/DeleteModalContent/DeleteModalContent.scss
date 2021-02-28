@@ -1,0 +1,46 @@
+@import 'variables';
+
+.delete-modal-container {
+  width: 100%;
+
+  .delete-modal-header {
+    background-color: transparent;
+    font-size: 1.5rem;
+    font-weight: $bold;
+  }
+
+  .close-icon {
+    cursor: pointer;
+    font-size: 1.5rem;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+  }
+
+  .delete-modal-text {
+    margin-top: 1.5rem;
+  }
+}
+
+.delete-modal-actions-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+
+  .app-button {
+    background-color: $lightCrimson;
+    border: 1px $lightCrimson solid;
+    border-radius: 5px;
+    color: $white;
+    padding: 0.5rem 1.2rem;
+
+    &:hover {
+      @include button-box-shadow;
+
+      background-color: $lightCrimson;
+      border-color: $lightCrimson;
+      color: $white;
+    }
+  }
+}

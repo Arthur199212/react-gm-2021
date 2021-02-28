@@ -1,0 +1,18 @@
+@import 'variables';
+
+.app-modal-container {
+  @include modal-container;
+
+  .app-modal {
+    @include modal;
+
+    @include large-screen {
+      display: flex;
+      flex-wrap: wrap;
+      height: auto;
+      justify-content: center;
+      max-width: 30rem;
+      position: relative;
+    }
+  }
+}

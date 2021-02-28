@@ -1,6 +1,6 @@
 @import 'variables';
 
-.tab {
+.app-tab {
   align-items: center;
   border-radius: 5px;
   color: $white;
@@ -10,8 +10,14 @@
   font-weight: $bold;
   justify-content: center;
   padding: 1rem 1.2rem;
+  text-transform: uppercase;
   transition: 0.1s;
   user-select: none;
+
+  &[class*='active'] {
+    background-color: $paleCrimson;
+    border-color: $paleCrimson;
+  }
 
   &:hover {
     background-color: $paleCrimson;
