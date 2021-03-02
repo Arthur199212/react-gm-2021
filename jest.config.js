@@ -1,4 +1,12 @@
 module.exports = {
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx,js,jsx}',
+    '!**/node_modules/**',
+    '!**/src/index.tsx',
+    '!**/src/assets/**',
+    '!**/src/server/**',
+    '!**/src/tests/**'
+  ],
   preset: 'ts-jest',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
@@ -8,6 +16,7 @@ module.exports = {
     '^@app(.*)$': ['<rootDir>/src$1']
   },
   modulePathIgnorePatterns: ['<rootDir>/dist/'],
+  resetMocks: true,
   setupFilesAfterEnv: [`<rootDir>/src/tests/jest-setup.ts`],
   testEnvironment: 'jsdom',
   transform: {

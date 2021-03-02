@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react'
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react'
 import {
   Button,
   CloseIcon,
@@ -26,7 +26,7 @@ import {
 } from './store'
 import './MovieForm.scss'
 
-type MovieFormProps = {
+export type MovieFormProps = {
   content: MovieFormContent
   movieId?: string
   onClose: Function
@@ -53,7 +53,7 @@ export const MovieForm = ({ content, movieId, onClose, open }: MovieFormProps) =
     }
   }, [content, dispatch, movieId, open])
 
-  const handleSmallModalClose = useCallback(() => setIsOpen(false), [])
+  const handleSmallModalClose = () => setIsOpen(false)
 
   useClickOutside(smallModalRef, handleSmallModalClose, isOpen)
 
@@ -106,7 +106,7 @@ export const MovieForm = ({ content, movieId, onClose, open }: MovieFormProps) =
 
   if (status === MovieFormStatus.SUBMITTED) {
     setTimeout(() => handleClose(), 1000)
-    return <SuccessIcon />
+    return <SuccessIcon data-testid={MovieFormTestIds.SUCCESS_ICON} />
   }
 
   if (status === MovieFormStatus.ERROR) {
@@ -114,7 +114,7 @@ export const MovieForm = ({ content, movieId, onClose, open }: MovieFormProps) =
   }
 
   return (
-    <div className='form-container'>
+    <div className='form-container' data-testid={MovieFormTestIds.CONTAINER}>
       <h5 className='form-header'>
         {content === MovieFormContent.CREATE ? 'ADD MOVIE' : 'EDIT MOVIE'}
       </h5>

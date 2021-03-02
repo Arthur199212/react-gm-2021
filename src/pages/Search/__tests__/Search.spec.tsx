@@ -1,16 +1,23 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import { Search } from '@app/pages'
+import { store } from '@app/store'
 
-describe('Search Component', () => {
-  it('should render properly', () => {
+describe('Search Page', () => {
+  const setup = () =>
     render(
-      <Router>
-        <Search />
-      </Router>
+      <Provider store={store}>
+        <Router>
+          <Search />
+        </Router>
+      </Provider>
     )
 
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('FIND YOUR MOVIE')
+  it('should render properly', () => {
+    const { asFragment } = setup()
+
+    expect(asFragment()).toMatchSnapshot()
   })
 })

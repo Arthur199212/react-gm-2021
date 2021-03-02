@@ -4,7 +4,6 @@ import { Movie } from '@app/services/movies'
 export enum MovieStatus {
   ERROR = 'error',
   LOADING = 'loading',
-  NO_RESULTS = 'noResults',
   SUCCESS = 'success'
 }
 
@@ -13,7 +12,7 @@ export type MovieState = {
   status: MovieStatus
 }
 
-const initialState: MovieState = {
+export const initialState: MovieState = {
   status: MovieStatus.LOADING
 }
 

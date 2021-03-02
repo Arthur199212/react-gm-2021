@@ -1,41 +1,50 @@
-import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { MovieForm, MovieFormContent, SmallModalTestIds } from '@app/components'
+import React from 'react'
+import { MovieForm, MovieFormContent, MovieFormProps, SmallModalTestIds } from '@app/components'
+import { MovieFormTestIds } from '../MovieForm.constants'
+import { render } from '@app/tests/testing-utils'
+import { server } from '@app/tests/mocks/server'
+import { API_URL } from '@app/config'
+import { rest } from 'msw'
+import { MOCK_MOVIE } from '@app/tests/mocks/mock-data'
 
 describe('MovieForm Component', () => {
   const onClose = jest.fn()
-
-  beforeEach(() => {
-    onClose.mockClear()
-  })
+  const defaultProps: MovieFormProps = {
+    content: MovieFormContent.CREATE,
+    onClose,
+    open: true
+  }
+  const mockText = 'test'
+  const setup = (props: MovieFormProps = defaultProps) => render(<MovieForm {...props} />)
 
   it('should render properly in MovieFormContent type is Create', () => {
-    // render(<MovieForm content={MovieFormContent.CREATE} onClose={onClose} />)
+    const { asFragment } = setup()
 
-    expect(screen.queryByLabelText(/movie-id/i)).not.toBeInTheDocument()
-    expect(screen.getByLabelText(/title/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/release-date/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/movie-url/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/genre/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/overview/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/runtime/i)).toBeInTheDocument()
+    expect(asFragment).toMatchSnapshot()
   })
 
-  it('should render properly in MovieFormContent type is Edit', () => {
-    // render(<MovieForm content={MovieFormContent.EDIT} onClose={onClose} />)
+  it('should render properly in MovieFormContent type is Edit', async () => {
+    const { asFragment } = setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
 
-    expect(screen.getByLabelText(/movie-id/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/title/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/release-date/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/movie-url/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/genre/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/overview/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/runtime/i)).toBeInTheDocument()
+    expect(asFragment).toMatchSnapshot()
+  })
+
+  it('should show error message in case of an error while fetching movie to Edit', async () => {
+    server.use(
+      rest.get(`${API_URL}/movies/:movieId`, (req, res, ctx) => {
+        return res(ctx.status(500))
+      })
+    )
+    setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+
+    expect(await screen.findByText(/sorry, something went wrong/i)).toBeInTheDocument()
   })
 
   it('select genre works properly', () => {
-    // render(<MovieForm content={MovieFormContent.EDIT} onClose={onClose} />)
+    setup()
+
     const genreInput = screen.getByLabelText(/genre/i) as HTMLInputElement
 
     // open genres modal
@@ -66,35 +75,97 @@ describe('MovieForm Component', () => {
   })
 
   it('select genre input does NOT allow to type in', () => {
-    // render(<MovieForm content={MovieFormContent.EDIT} onClose={onClose} />)
+    setup()
+
     const genreInput = screen.getByLabelText(/genre/i) as HTMLInputElement
 
-    userEvent.type(genreInput, 'test')
+    userEvent.type(genreInput, mockText)
     expect(genreInput.value).toBe('')
   })
 
   it('form field input works properly', () => {
-    // render(<MovieForm content={MovieFormContent.CREATE} onClose={onClose} />)
+    setup()
+
     const input = screen.getByLabelText(/title/i) as HTMLInputElement
 
-    userEvent.type(input, 'test')
-    expect(input.value).toBe('test')
+    userEvent.type(input, mockText)
+    expect(input.value).toBe(mockText)
   })
 
-  it('reset & submit buttons work properly', () => {
-    // render(<MovieForm content={MovieFormContent.CREATE} onClose={onClose} />)
+  it('reset button should work properly', async () => {
+    setup()
     const input = screen.getByLabelText(/title/i) as HTMLInputElement
 
-    userEvent.type(input, 'test')
-    expect(input.value).toBe('test')
+    userEvent.type(input, mockText)
+    expect(input.value).toBe(mockText)
 
     fireEvent.click(screen.getByLabelText(/reset/i))
-    expect(input.value).toBe('')
 
-    userEvent.type(input, 'test')
-    expect(input.value).toBe('test')
+    const movieForm = await waitFor(() => screen.queryByTestId(MovieFormTestIds.CONTAINER))
+    expect(movieForm).not.toBeInTheDocument()
+  })
+
+  it('submit button works properly', async () => {
+    setup()
+    const input = screen.getByLabelText(/title/i) as HTMLInputElement
+
+    userEvent.type(input, mockText)
+    expect(input.value).toBe(mockText)
 
     fireEvent.click(screen.getByLabelText(/submit/i))
-    expect(input.value).toBe('')
+
+    expect(await screen.findByTestId(MovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
+  })
+
+  it('works properly in case of editing a movie', async () => {
+    setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+    const input = (await screen.findByLabelText(/title/i)) as HTMLInputElement
+
+    expect(input.value).toBe(MOCK_MOVIE.title)
+
+    userEvent.clear(input)
+    userEvent.type(input, mockText)
+    expect(input.value).toBe(mockText)
+
+    fireEvent.click(screen.getByLabelText(/submit/i))
+
+    expect(await screen.findByTestId(MovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
+  })
+
+  it('should work properly in case of an error while editing a movie', async () => {
+    server.use(
+      rest.put(`${API_URL}/movies`, (req, res, ctx) => {
+        return res(ctx.status(500))
+      })
+    )
+    setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+    const input = (await screen.findByLabelText(/title/i)) as HTMLInputElement
+
+    expect(input.value).toBe(MOCK_MOVIE.title)
+
+    userEvent.clear(input)
+    userEvent.type(input, mockText)
+    expect(input.value).toBe(mockText)
+
+    fireEvent.click(screen.getByLabelText(/submit/i))
+
+    expect(await screen.findByText(/sorry, something went wrong/i)).toBeInTheDocument()
+  })
+
+  it('should work properly in case of an error while creating a movie', async () => {
+    server.use(
+      rest.post(`${API_URL}/movies`, (req, res, ctx) => {
+        return res(ctx.status(500))
+      })
+    )
+    setup()
+    const input = screen.getByLabelText(/title/i) as HTMLInputElement
+
+    userEvent.type(input, mockText)
+    expect(input.value).toBe(mockText)
+
+    fireEvent.click(screen.getByLabelText(/submit/i))
+
+    expect(await screen.findByText(/sorry, something went wrong/i)).toBeInTheDocument()
   })
 })

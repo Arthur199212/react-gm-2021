@@ -1,26 +1,12 @@
-import React from 'react'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import React from 'react'
 import { SearchBox } from '@app/pages/Search/components'
+import { render } from '@app/tests/testing-utils'
 
 describe('SearchBox Component', () => {
-  // const onSearch = jest.fn()
   const queryMock = 'query'
-  // const setQuery = jest.fn()
   const setup = () => render(<SearchBox />)
-
-  // beforeEach(() => {
-  // onSearch.mockClear()
-  // setQuery.mockClear()
-  // })
-
-  it('should render properly', () => {
-    setup()
-
-    expect(screen.getByText(/find your movie/i)).toBeInTheDocument()
-    expect(screen.getByPlaceholderText('What do you want to watch?')).toBeInTheDocument()
-    expect(screen.getByText(/search/i)).toBeInTheDocument()
-  })
 
   it('search input should work properly', () => {
     setup()
@@ -28,12 +14,11 @@ describe('SearchBox Component', () => {
 
     userEvent.type(input, queryMock)
     expect(input.value).toBe(queryMock)
-    // expect(setQuery).toBeCalled()
 
     fireEvent.keyDown(input, { key: 'Esc' })
     expect(input.value).toBe(queryMock)
 
     fireEvent.keyDown(input, { key: 'Enter' })
-    // expect(onSearch).toBeCalledTimes(1)
+    expect(input.value).toBe('')
   })
 })

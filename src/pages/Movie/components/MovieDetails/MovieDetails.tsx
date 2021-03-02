@@ -16,7 +16,7 @@ export const MovieDetails = () => {
     )
   }
 
-  if (status === MovieStatus.NO_RESULTS || status === MovieStatus.ERROR || !movie) {
+  if (status === MovieStatus.ERROR || !movie) {
     return (
       <div className='movie-details-container container'>
         <h5 className='error-message'>Sorry, but such a movie was not found.</h5>

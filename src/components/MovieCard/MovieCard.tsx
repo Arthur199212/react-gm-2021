@@ -1,4 +1,5 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Card,
   CardMedia,
@@ -12,15 +13,15 @@ import {
   ShowMoreButton
 } from '@app/components'
 import { useClickOutside } from '@app/hooks'
+import { MovieCardTestIds } from './MovieCard.constants'
 import './MovieCard.scss'
-import { Link } from 'react-router-dom'
 
 enum MovieCardDropdownType {
   DELETE = 'delete',
   EDIT = 'edit'
 }
 
-type MovieCardProps = {
+export type MovieCardProps = {
   description: string
   id: number
   image: string
@@ -35,7 +36,7 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
-  const handleDropdownClose = useCallback(() => setDropdownOpen(false), [])
+  const handleDropdownClose = () => setDropdownOpen(false)
 
   useClickOutside(dropdownRef, handleDropdownClose, dropdownOpen)
 
@@ -58,7 +59,7 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
             <CardMedia image={image} title={title} />
           </Link>
           <ShowMoreButton open={dropdownOpen} onClick={() => setDropdownOpen(!dropdownOpen)} />
-          <Dropdown elRef={dropdownRef} open={dropdownOpen}>
+          <Dropdown data-testid={MovieCardTestIds.DROPDOWN} elRef={dropdownRef} open={dropdownOpen}>
             <DropdownItem onClick={() => handleClick(MovieCardDropdownType.EDIT)}>
               Edit
             </DropdownItem>

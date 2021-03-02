@@ -19,7 +19,7 @@ class MoviesService {
   }
 
   async deleteMovie(movieId: string): Promise<void> {
-    await fetch(`${API_URL}/movies/${encodeURIComponent(movieId)}`, {
+    const res = await fetch(`${API_URL}/movies/${encodeURIComponent(movieId)}`, {
       method: 'DELETE'
     })
     if (!this.isStatusSuccessful(res.status)) {

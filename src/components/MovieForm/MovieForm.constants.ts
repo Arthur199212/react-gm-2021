@@ -28,5 +28,7 @@ export const GENRES = [
 ]
 
 export enum MovieFormTestIds {
-  CLOSE_ICON = 'movei-form-close-icon'
+  CLOSE_ICON = 'movie-form-close-icon',
+  CONTAINER = 'movie-form-container',
+  SUCCESS_ICON = 'movie-form-success-icon'
 }

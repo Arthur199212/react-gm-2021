@@ -1,26 +1,24 @@
-import React, { KeyboardEvent, useEffect } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import React, { KeyboardEvent } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Button, InputBox } from '@app/components'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
-import { selectSearchQuery, setQuery, fetchMoviesThunk } from '@app/pages/Search/store'
+import { selectSearchQuery, setQuery } from '@app/pages/Search/store'
 import './SearchBox.scss'
 
 export const SearchBox = () => {
   const dispatch = useAppDispatch()
   const history = useHistory()
   const query = useAppSelector(selectSearchQuery)
-  const { query: queryParam } = useParams<{ query: string }>()
+
+  const handlePerformSearch = () => {
+    history.push(`/search/${encodeURIComponent(query.trim())}`)
+    dispatch(setQuery(''))
+  }
 
   const handleKeyDown = ({ key }: KeyboardEvent) => {
     if (key !== 'Enter') return
-    history.push(`/search/${encodeURIComponent(query.trim())}`)
+    handlePerformSearch()
   }
-
-  useEffect(() => {
-    if (queryParam) {
-      dispatch(fetchMoviesThunk(queryParam))
-    }
-  }, [dispatch, queryParam])
 
   return (
     <div className='search-box-container container'>
@@ -34,9 +32,7 @@ export const SearchBox = () => {
           onChange={({ target: { value } }) => dispatch(setQuery(value))}
           onKeyDown={handleKeyDown}
         />
-        <Button onClick={() => history.push(`/search/${encodeURIComponent(query.trim())}`)}>
-          SEARCH
-        </Button>
+        <Button onClick={handlePerformSearch}>SEARCH</Button>
       </div>
     </div>
   )

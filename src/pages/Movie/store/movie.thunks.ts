@@ -18,11 +18,6 @@ export const fetchMovieThunk = createAsyncThunk<void, string, RootThunk>(
         dispatch(fetchMoviesByGenreThunk(data.genres[0]))
       }
 
-      if (!data) {
-        dispatch(setStatus(MovieStatus.NO_RESULTS))
-        return
-      }
-
       dispatch(setStatus(MovieStatus.SUCCESS))
       dispatch(setMovie(data))
     } catch (err) {

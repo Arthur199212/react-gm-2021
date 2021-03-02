@@ -30,7 +30,7 @@ export type SearchState = {
   totalAmount: number
 }
 
-const initialState: SearchState = {
+export const initialState: SearchState = {
   filter: SearchFilter.ALL,
   movies: [],
   query: '',

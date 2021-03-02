@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useRef } from 'react'
 import { Button, Dropdown, DropdownItem, Tabs, TabItem } from '@app/components'
 import { useAppDispatch, useAppSelector, useClickOutside } from '@app/hooks'
 import {
@@ -20,7 +20,7 @@ export const Filters = () => {
   const dropdownRef = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleClickOutside = useCallback(() => setIsOpen(false), [])
+  const handleClickOutside = () => setIsOpen(false)
 
   useClickOutside(dropdownRef, handleClickOutside, isOpen)
 
@@ -48,7 +48,7 @@ export const Filters = () => {
           <Button data-testid={FiltersTestIds.DROPDOWN_BUTTON} onClick={() => setIsOpen(!isOpen)}>
             {sortBy}
           </Button>
-          <Dropdown elRef={dropdownRef} open={isOpen}>
+          <Dropdown data-testid={FiltersTestIds.DROPDOWN} elRef={dropdownRef} open={isOpen}>
             {SORT_BY_OPTIONS.map(optionName => (
               <DropdownItem
                 key={`dropdown-${toKebabCase(optionName)}`}

@@ -1,27 +1,18 @@
 import React from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import { MovieFormTestIds, ModalTestIds } from '@app/components'
 import { Header, HeaderTestIds } from '@app/pages/Search/components'
+import { render } from '@app/tests/testing-utils'
 
 describe('Header Component', () => {
-  const setup = () =>
-    render(
-      <Router>
-        <Header />
-      </Router>
-    )
+  const setup = () => render(<Header />)
 
-  it('add button click should open modal', () => {
+  it('add movie modal should work', () => {
     setup()
 
     fireEvent.click(screen.getByTestId(HeaderTestIds.BUTTON))
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).toContain('open')
-  })
-
-  it('modal should be closed on close icon click', () => {
-    setup()
 
     fireEvent.click(screen.getByTestId(MovieFormTestIds.CLOSE_ICON))
 

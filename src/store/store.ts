@@ -14,7 +14,7 @@ export type RootThunk = {
   state: RootState
 }
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   deleteMovieForm: deleteMovieFormReducer,
   movie: movieReducer,
   movieForm: movieFormReducer,
