@@ -10,5 +10,13 @@
   .app-textarea {
     margin-top: 0.5rem;
     width: 100%;
+
+    &[class*='error'] {
+      border-color: $lightCrimson;
+    }
+  }
+
+  .error-text {
+    @include form-field-error-text;
   }
 }

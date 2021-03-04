@@ -1,8 +1,3 @@
-export enum MovieFormContent {
-  CREATE = 'create',
-  EDIT = 'edit'
-}
-
 export const GENRES = [
   'action',
   'adventure',
@@ -26,9 +21,3 @@ export const GENRES = [
   'war',
   'western'
 ]
-
-export enum MovieFormTestIds {
-  CLOSE_ICON = 'movie-form-close-icon',
-  CONTAINER = 'movie-form-container',
-  SUCCESS_ICON = 'movie-form-success-icon'
-}

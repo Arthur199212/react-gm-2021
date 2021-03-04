@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, MovieForm, MovieFormContent, Modal } from '@app/components'
+import { AddMovieForm, Button, Modal } from '@app/components'
 import { RoutePath } from '@app/routes'
 import { HeaderTestIds } from './Header.constants'
 import './Header.scss'
@@ -18,11 +18,7 @@ export const Header = () => {
           ADD MOVIE
         </Button>
         <Modal open={isOpen}>
-          <MovieForm
-            content={MovieFormContent.CREATE}
-            onClose={() => setIsOpen(false)}
-            open={isOpen}
-          />
+          <AddMovieForm onClose={() => setIsOpen(false)} open={isOpen} />
         </Modal>
       </div>
     </header>

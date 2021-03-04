@@ -1,9 +1,10 @@
 import { API_URL } from '@app/config'
-import { MovieFormFields } from '@app/components/MovieForm/store'
+import { AddMovieFormFields } from '@app/components/AddMovieForm/store'
+import { EditMovieFormFields } from '@app/components/EditMovieForm/store'
 import { LIMIT, SearchBy, MoviesSearchResponse, Movie } from './movies.constants'
 
 class MoviesService {
-  async addMovie(movie: MovieFormFields): Promise<Movie> {
+  async addMovie(movie: AddMovieFormFields): Promise<Movie> {
     const movieToAll = { ...movie, runtime: Number(movie.runtime), id: undefined }
     const res = await fetch(`${API_URL}/movies`, {
       body: JSON.stringify(movieToAll),
@@ -27,8 +28,8 @@ class MoviesService {
     }
   }
 
-  async editMovie(movie: MovieFormFields): Promise<Movie> {
-    const movieToEdit = { ...movie, runtime: Number(movie.runtime) }
+  async editMovie(movie: EditMovieFormFields): Promise<Movie> {
+    const movieToEdit = { ...movie, runtime: Number(movie.runtime), id: Number(movie.id) }
     const res = await fetch(`${API_URL}/movies`, {
       body: JSON.stringify(movieToEdit),
       headers: {

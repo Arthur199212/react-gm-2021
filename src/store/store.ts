@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import { deleteMovieFormReducer } from '@app/components/DeleteMovieForm/store'
-import { movieFormReducer } from '@app/components/MovieForm/store'
+import { addMovieFormReducer } from '@app/components/AddMovieForm/store'
+import { editMovieFormReducer } from '@app/components/EditMovieForm/store'
 import { movieReducer } from '@app/pages/Movie/store'
 import { searchReducer } from '@app/pages/Search/store'
 
@@ -15,9 +16,10 @@ export type RootThunk = {
 }
 
 export const rootReducer = combineReducers({
+  addMovieForm: addMovieFormReducer,
   deleteMovieForm: deleteMovieFormReducer,
+  editMovieForm: editMovieFormReducer,
   movie: movieReducer,
-  movieForm: movieFormReducer,
   search: searchReducer
 })
 

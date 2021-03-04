@@ -1,8 +1,12 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
-import { MovieForm, MovieFormContent, MovieFormProps, SmallModalTestIds } from '@app/components'
-import { MovieFormTestIds } from '../MovieForm.constants'
+import {
+  EditMovieForm,
+  EditMovieFormProps,
+  EditMovieFormTestIds,
+  SmallModalTestIds
+} from '@app/components'
 import { render } from '@app/tests/testing-utils'
 import { server } from '@app/tests/mocks/server'
 import { API_URL } from '@app/config'
@@ -11,13 +15,14 @@ import { MOCK_MOVIE } from '@app/tests/mocks/mock-data'
 
 describe('MovieForm Component', () => {
   const onClose = jest.fn()
-  const defaultProps: MovieFormProps = {
-    content: MovieFormContent.CREATE,
+  const defaultProps: EditMovieFormProps = {
+    // content: MovieFormContent.CREATE,
+    movieId: '1',
     onClose,
     open: true
   }
   const mockText = 'test'
-  const setup = (props: MovieFormProps = defaultProps) => render(<MovieForm {...props} />)
+  const setup = (props: EditMovieFormProps = defaultProps) => render(<EditMovieForm {...props} />)
 
   it('should render properly in MovieFormContent type is Create', () => {
     const { asFragment } = setup()
@@ -26,7 +31,11 @@ describe('MovieForm Component', () => {
   })
 
   it('should render properly in MovieFormContent type is Edit', async () => {
-    const { asFragment } = setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+    const { asFragment } = setup({
+      ...defaultProps,
+      // content: MovieFormContent.EDIT,
+      movieId: '1'
+    })
 
     expect(asFragment).toMatchSnapshot()
   })
@@ -37,7 +46,11 @@ describe('MovieForm Component', () => {
         return res(ctx.status(500))
       })
     )
-    setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+    setup({
+      ...defaultProps,
+      // content: MovieFormContent.EDIT,
+      movieId: '1'
+    })
 
     expect(await screen.findByText(/sorry, something went wrong/i)).toBeInTheDocument()
   })
@@ -101,7 +114,7 @@ describe('MovieForm Component', () => {
 
     fireEvent.click(screen.getByLabelText(/reset/i))
 
-    const movieForm = await waitFor(() => screen.queryByTestId(MovieFormTestIds.CONTAINER))
+    const movieForm = await waitFor(() => screen.queryByTestId(EditMovieFormTestIds.CONTAINER))
     expect(movieForm).not.toBeInTheDocument()
   })
 
@@ -114,11 +127,15 @@ describe('MovieForm Component', () => {
 
     fireEvent.click(screen.getByLabelText(/submit/i))
 
-    expect(await screen.findByTestId(MovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
+    expect(await screen.findByTestId(EditMovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
   })
 
   it('works properly in case of editing a movie', async () => {
-    setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+    setup({
+      ...defaultProps,
+      // content: MovieFormContent.EDIT,
+      movieId: '1'
+    })
     const input = (await screen.findByLabelText(/title/i)) as HTMLInputElement
 
     expect(input.value).toBe(MOCK_MOVIE.title)
@@ -129,7 +146,7 @@ describe('MovieForm Component', () => {
 
     fireEvent.click(screen.getByLabelText(/submit/i))
 
-    expect(await screen.findByTestId(MovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
+    expect(await screen.findByTestId(EditMovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
   })
 
   it('should work properly in case of an error while editing a movie', async () => {
@@ -138,7 +155,11 @@ describe('MovieForm Component', () => {
         return res(ctx.status(500))
       })
     )
-    setup({ ...defaultProps, content: MovieFormContent.EDIT, movieId: '1' })
+    setup({
+      ...defaultProps,
+      // content: MovieFormContent.EDIT,
+      movieId: '1'
+    })
     const input = (await screen.findByLabelText(/title/i)) as HTMLInputElement
 
     expect(input.value).toBe(MOCK_MOVIE.title)

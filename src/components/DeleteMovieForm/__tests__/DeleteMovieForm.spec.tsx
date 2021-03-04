@@ -9,7 +9,8 @@ import { API_URL } from '@app/config'
 describe('DeleteMovieForm Component', () => {
   const onClose = jest.fn()
   const movieIdMock = '1'
-  const setup = () => render(<DeleteMovieForm movieId={movieIdMock} onClose={onClose} />)
+  const setup = () =>
+    render(<DeleteMovieForm movieId={movieIdMock} onClose={onClose} open={true} />)
 
   it('close icon should work', () => {
     setup()

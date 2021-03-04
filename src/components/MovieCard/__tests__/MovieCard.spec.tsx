@@ -8,7 +8,7 @@ import {
   ModalTestIds,
   MovieCard,
   MovieCardProps,
-  MovieFormTestIds,
+  EditMovieFormTestIds,
   ShowMoreButtonTestIds,
   SmallModalTestIds
 } from '@app/components'
@@ -66,7 +66,7 @@ describe('MovieCard Component', () => {
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).toContain('open')
 
-    fireEvent.click(await screen.findByTestId(MovieFormTestIds.CLOSE_ICON))
+    fireEvent.click(await screen.findByTestId(EditMovieFormTestIds.CLOSE_ICON))
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).not.toContain('open')
   })
