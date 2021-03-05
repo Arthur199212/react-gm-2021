@@ -1,0 +1,56 @@
+@import 'variables';
+
+.app-movie-page {
+  .movie-details-container {
+    margin-top: 1.5rem;
+
+    .app-card {
+      flex: 1;
+    }
+
+    .movie-details {
+      flex: 3;
+      padding: 1rem 2rem;
+
+      .title {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+
+      .tagline {
+        color: $paleGray;
+        font-weight: 300;
+        margin: 1rem 0 1.3rem;
+      }
+
+      .release-date {
+        font-size: 0.9rem;
+        font-weight: $bold;
+      }
+
+      .runtime {
+        font-size: 0.9rem;
+        font-weight: $bold;
+        margin-left: 0.5rem;
+      }
+
+      .rating {
+        color: $paleGray;
+        font-size: 0.9rem;
+        margin-top: 1.2rem;
+
+        .rating-icon {
+          color: $golden;
+          margin-right: 0.3rem;
+        }
+      }
+
+      .overview {
+        color: $paleGray;
+        font-weight: 300;
+        line-height: 1.7rem;
+        margin-top: 1.3rem;
+      }
+    }
+  }
+}
