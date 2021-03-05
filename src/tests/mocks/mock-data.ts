@@ -13,7 +13,7 @@ export const MOCK_MOVIE: Movie = {
   budget: 160000000,
   revenue: 1263521126,
   runtime: 129,
-  genres: ['Family', 'Fantasy', 'Romance']
+  genres: ['Family']
 }
 
 export const MOCK_MOVIES = [

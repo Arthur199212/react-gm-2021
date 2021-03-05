@@ -1,23 +1,22 @@
-import { FieldProps, getIn } from 'formik'
+import { FieldHookConfig, useField } from 'formik'
 import React from 'react'
 import { TextareaBox, TextareaBoxProps } from '@app/components'
-import { replaceFirstWord } from '@app/utils'
 import './TextareaFormField.scss'
 
 type TextareaFormFieldProps = TextareaBoxProps &
-  FieldProps & {
+  FieldHookConfig<{}> & {
     label: string
   }
 
-export const TextareaFormField = ({ field, form, label, ...rest }: TextareaFormFieldProps) => {
-  const errorText: string | undefined =
-    getIn(form.touched, field.name) && getIn(form.errors, field.name)
+export const TextareaFormField = ({ label, ...rest }: TextareaFormFieldProps) => {
+  const [field, meta] = useField(rest)
+  const errorText = meta.touched && meta.error
 
   return (
     <div className='app-textarea-form-field'>
       <label className='app-textarea-form-field-label'>{label}</label>
       <TextareaBox error={Boolean(errorText)} {...field} {...rest} />
-      <div className='error-text'>{replaceFirstWord(label, errorText)}</div>
+      {errorText && <div className='error-text'>{errorText}</div>}
     </div>
   )
 }

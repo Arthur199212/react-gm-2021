@@ -1,3 +1,4 @@
+import { useField } from 'formik'
 import React, { useRef, useState } from 'react'
 import {
   CloseIcon,
@@ -7,12 +8,12 @@ import {
   SmallModal
 } from '@app/components'
 import { useClickOutside } from '@app/hooks'
-import { capitalizeStr, sortGenresAlphabetically } from '@app/utils'
-import { GENRES } from './GenresFormField.constants'
+import { sortGenresAlphabetically } from '@app/utils'
+import { GENRES, GenresFormFieldTestIds } from './GenresFormField.constants'
 import './GenresFormField.scss'
 
 export const GenresFormField = (props: FormFieldProps) => {
-  const { field, form } = props
+  const [, { value }, { setValue }] = useField<any>(props)
   const [isOpen, setIsOpen] = useState(false)
   const smallModalRef = useRef(null)
 
@@ -20,18 +21,12 @@ export const GenresFormField = (props: FormFieldProps) => {
 
   useClickOutside(smallModalRef, handleSmallModalClose, isOpen)
 
-  const handleSelectGenre = (clickedGenre: string) => {
-    const genreName = capitalizeStr(clickedGenre)
-
-    if (field.value?.includes(genreName)) {
-      form.setFieldValue(
-        field.name,
-        field.value.filter((i: string) => i !== genreName)
-      )
-      return
+  const handleSelectGenre = (genre: string) => {
+    if (value.includes(genre)) {
+      return setValue(value.filter((i: string) => i !== genre))
     }
 
-    form.setFieldValue(field.name, [...field.value, genreName])
+    setValue([...value, genre])
   }
 
   return (
@@ -44,18 +39,23 @@ export const GenresFormField = (props: FormFieldProps) => {
           event.preventDefault()
         }}
         onClick={() => setIsOpen(true)}
-        value={sortGenresAlphabetically(field.value)}
+        value={sortGenresAlphabetically(value)}
         {...props}
       />
-      <SmallModal elRef={smallModalRef} open={isOpen} scrollable>
+      <SmallModal
+        data-testid={GenresFormFieldTestIds.SMALL_MODAL}
+        elRef={smallModalRef}
+        open={isOpen}
+        scrollable
+      >
         <div className='genres-form-field-modal-title'>CHOOSE GENRES</div>
         <CloseIcon onClick={handleSmallModalClose} topRight />
         {GENRES.map(genre => (
           <CheckboxFormField
             key={`genre-${genre}`}
-            defaultChecked={field.value?.some((gnr: string) => gnr.toLocaleLowerCase() === genre)}
+            checked={value.includes(genre)}
             label={genre}
-            onClick={() => handleSelectGenre(genre)}
+            onChange={() => handleSelectGenre(genre)}
           />
         ))}
       </SmallModal>

@@ -1,4 +1,4 @@
-import { fireEvent, screen, waitFor } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import React from 'react'
 import { DeleteMovieForm, DeleteMovieFormTestIds } from '@app/components'
 import { render } from '@app/tests/testing-utils'
@@ -24,10 +24,7 @@ describe('DeleteMovieForm Component', () => {
 
     fireEvent.click(screen.getByTestId(DeleteMovieFormTestIds.CONFIRM_BUTTON))
 
-    const successIcon = await screen.findByTestId(DeleteMovieFormTestIds.SUCCESS_ICON)
-    expect(successIcon).toBeInTheDocument()
-
-    await waitFor(() => expect(onClose).toBeCalled())
+    expect(await screen.findByTestId(DeleteMovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
   })
 
   it('should work properly if error occurs', async () => {

@@ -1,4 +1,4 @@
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form } from 'formik'
 import React, { useEffect } from 'react'
 import {
   AddMovieFormTestIds,
@@ -12,7 +12,8 @@ import {
   TextareaFormField
 } from '@app/components'
 import { useAppDispatch, useAppSelector, useTimeout } from '@app/hooks'
-import { initialValues, validationSchema } from './AddMovieForm.constants'
+import { addMovieSchema } from '@app/validation'
+import { initialValues } from './AddMovieForm.constants'
 import { reset, AddMovieFormStatus, selectMovieFormStatus, addMovieThunk } from './store'
 
 export type AddMovieFormProps = {
@@ -53,7 +54,7 @@ export const AddMovieForm = ({ onClose, open }: AddMovieFormProps) => {
           dispatch(addMovieThunk(values))
           resetForm()
         }}
-        validationSchema={validationSchema}
+        validationSchema={addMovieSchema}
       >
         {({ handleSubmit, resetForm }) => (
           <Form>
@@ -65,50 +66,29 @@ export const AddMovieForm = ({ onClose, open }: AddMovieFormProps) => {
               }}
               topRight
             />
-            <Field
-              aria-label='title'
-              component={FormField}
-              label='Title'
-              name='title'
-              placeholder='Title'
-            />
-            <Field
+            <FormField aria-label='title' label='Title' name='title' placeholder='Title' />
+            <FormField
               aria-label='release-date'
-              component={FormField}
               label='Release date'
               name='release_date'
               type='date'
             />
-            <Field
+            <FormField
               aria-label='movie-url'
-              component={FormField}
               label='Movie URL'
               name='poster_path'
               placeholder='Movie Poster URL'
               type='url'
             />
-            <Field
-              aria-label='genre'
-              component={GenresFormField}
-              label='Genre'
-              name='genres'
-              placeholder='Genge'
-            />
-            <Field
+            <GenresFormField aria-label='genre' label='Genre' name='genres' placeholder='Genge' />
+            <TextareaFormField
               aria-label='overview'
-              component={TextareaFormField}
               label='Overview'
               name='overview'
               noResize
               placeholder='Overview'
             />
-            <Field
-              aria-label='runtime'
-              component={FormField}
-              label='Runtime'
-              name='runtime'
-              placeholder='Runtime'
-            />
+            <FormField aria-label='runtime' label='Runtime' name='runtime' placeholder='Runtime' />
             <div className='form-actions-container'>
               <Button
                 aria-label='reset'
@@ -119,7 +99,7 @@ export const AddMovieForm = ({ onClose, open }: AddMovieFormProps) => {
               >
                 RESET
               </Button>
-              <Button aria-label='submit' onClick={handleSubmit as any}>
+              <Button aria-label='submit' onClick={() => handleSubmit()}>
                 SUBMIT
               </Button>
             </div>

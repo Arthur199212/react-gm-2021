@@ -9,7 +9,7 @@ type CheckboxFormFieldProps = DetailedHTMLProps<
 }
 
 export const CheckboxFormField = ({ label, ...rest }: CheckboxFormFieldProps) => (
-  <div key={`checkbox-${label}`} className='app-checkbox-form-field'>
+  <div className='app-checkbox-form-field'>
     <label className='label' htmlFor={label}>
       {label}
       <input aria-label={label} className='checkbox' type='checkbox' name={label} {...rest} />

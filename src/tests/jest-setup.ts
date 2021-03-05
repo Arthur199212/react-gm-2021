@@ -6,6 +6,12 @@ import { server } from './mocks/server'
 const noop = () => {}
 Object.defineProperty(window, 'scrollTo', { value: noop, writable: true })
 
+// mock validation schemas
+jest.mock('../validation', () => ({
+  addMovieSchema: undefined,
+  editMovieSchema: undefined
+}))
+
 // start & stop mock service worker
 beforeAll(() => {
   server.listen()

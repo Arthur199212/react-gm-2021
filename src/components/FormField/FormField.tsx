@@ -1,26 +1,26 @@
-import { FieldProps, getIn } from 'formik'
+import { FieldHookConfig, useField } from 'formik'
 import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import { InputBox } from '@app/components'
-import { replaceFirstWord } from '@app/utils'
 import './FormField.scss'
 
 export type FormFieldProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,
   HTMLInputElement
 > &
-  FieldProps & {
+  FieldHookConfig<{}> & {
     label: string
+    name: string
   }
 
-export const FormField = ({ field, form, label, ...rest }: FormFieldProps) => {
-  const errorText: string | undefined =
-    getIn(form.touched, field.name) && getIn(form.errors, field.name)
+export const FormField = ({ label, ...rest }: FormFieldProps) => {
+  const [field, meta] = useField(rest)
+  const errorText = meta.touched && meta.error
 
   return (
     <div className='app-form-field'>
       <label className='app-form-field-label'>{label}</label>
       <InputBox error={Boolean(errorText)} {...field} {...rest} />
-      <div className='error-text'>{replaceFirstWord(label, errorText)}</div>
+      {errorText && <div className='error-text'>{errorText}</div>}
     </div>
   )
 }

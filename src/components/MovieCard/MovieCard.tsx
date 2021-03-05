@@ -84,7 +84,7 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
           open={editModalOpen}
         />
       </Modal>
-      <SmallModal open={deleteModalOpen}>
+      <SmallModal data-testid={MovieCardTestIds.SMALL_MODAL} open={deleteModalOpen}>
         <DeleteMovieForm
           movieId={String(id)}
           onClose={() => setDeleteModalOpen(false)}
