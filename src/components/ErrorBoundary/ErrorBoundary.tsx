@@ -1,5 +1,4 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react'
-import './ErrorBoundary.scss'
 
 type ErrorBoundaryProps = {
   children: ReactNode

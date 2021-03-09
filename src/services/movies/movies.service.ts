@@ -1,6 +1,6 @@
 import { API_URL } from '@app/config'
-import { AddMovieFormFields } from '@app/components/AddMovieForm/store'
-import { EditMovieFormFields } from '@app/components/EditMovieForm/store'
+import { AddMovieFormFields } from '@app/features/AddMovieForm/store'
+import { EditMovieFormFields } from '@app/features/EditMovieForm/store'
 import { LIMIT, SearchBy, MoviesSearchResponse, Movie } from './movies.constants'
 
 class MoviesService {
@@ -62,6 +62,14 @@ class MoviesService {
     )
     if (!this.isStatusSuccessful(res.status)) {
       throw new Error(`Could not fetch movies with by query: ${query}`)
+    }
+    return res.json()
+  }
+
+  async fetchMoviesDefault(): Promise<MoviesSearchResponse> {
+    const res = await fetch(`${API_URL}/movies?limit=${LIMIT}`)
+    if (!this.isStatusSuccessful(res.status)) {
+      throw new Error(`Could not fetch movies by default search`)
     }
     return res.json()
   }

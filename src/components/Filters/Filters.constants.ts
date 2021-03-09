@@ -1,4 +1,4 @@
-import { SearchFilter, SortBy } from '@app/pages/Search/store'
+import { SearchFilter, SortBy } from '@app/features/SearchPage/store'
 
 export enum FiltersTestIds {
   CONTAINER = 'filters-container',

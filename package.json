@@ -1,20 +1,20 @@
 {
   "name": "react-gm-2021",
   "version": "0.0.1",
-  "description": "React Global Mentoring Programm 2021",
+  "description": "React Global Mentoring Program 2021",
   "main": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Arthur199212/react-gm-2021.git"
   },
   "scripts": {
-    "clean": "rimraf dist",
-    "predev": "rimraf dist",
-    "dev": "webpack --watch --config ./config/webpack/webpack.config.js",
+    "clean": "rimraf .next",
+    "predev": "yarn clean",
+    "dev": "next dev",
     "server": "nodemon ./dist/server",
-    "start": "node ./dist/server",
-    "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack --config ./config/webpack/webpack.config.js",
+    "start": "next start",
+    "prebuild": "yarn clean",
+    "build": "next build",
     "lint": "run-p \"lint:* --fix\"",
     "lint:source": "eslint */**/*.{js,ts,tsx} --quiet",
     "lint:style": "stylelint ./src/**/*.scss",
@@ -24,7 +24,7 @@
     "test:staged": "jest --bail --findRelatedTests"
   },
   "keywords": [
-    "react"
+    "react", "nextjs", "redux-toolkit"
   ],
   "author": "Arthur Rubchenko",
   "license": "ISC",
@@ -40,6 +40,7 @@
     "formik": "^2.2.6",
     "helmet": "^4.4.1",
     "isomorphic-fetch": "^3.0.0",
+    "next": "^10.0.8",
     "normalize.css": "^8.0.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",

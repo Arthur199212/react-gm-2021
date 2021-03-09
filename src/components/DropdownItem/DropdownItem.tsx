@@ -1,6 +1,5 @@
 import React, { DetailedHTMLProps, LiHTMLAttributes } from 'react'
 import { DropdownItemTestIds } from './DropdownItem.constants'
-import './DropdownItem.scss'
 
 type DropdownItemProps = DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
 

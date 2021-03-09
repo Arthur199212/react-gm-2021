@@ -1,5 +1,4 @@
 import React, { DetailedHTMLProps, ImgHTMLAttributes, useEffect, useState } from 'react'
-import './CardMedia.scss'
 
 type CardMediaProps = DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement> & {
   image: string

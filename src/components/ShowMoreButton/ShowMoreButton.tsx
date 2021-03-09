@@ -1,6 +1,5 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
 import { ShowMoreButtonTestIds } from './ShowMoreButton.constants'
-import './ShowMoreButton.scss'
 
 type ShowMoreButtonProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   open?: boolean

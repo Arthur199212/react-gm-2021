@@ -1,7 +1,6 @@
 import React, { DetailedHTMLProps, HTMLAttributes, RefObject } from 'react'
 import classNames from 'classnames'
 import { useScrollLock } from '@app/hooks'
-import './SmallModal.scss'
 
 type SmallModalProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
   elRef?: RefObject<HTMLDivElement> | null

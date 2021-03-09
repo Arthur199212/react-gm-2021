@@ -1,30 +1,33 @@
+import { useRouter } from 'next/router'
 import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import { DualRingSpinner, MovieCard, NoSearchResults } from '@app/components'
 import { useAppDispatch, useAppSelector } from '@app/hooks'
 import {
   fetchMoviesThunk,
   SearchStatus,
   selectFilteredAndSortedMovies,
+  selectSearchQuery,
   selectSearchStatus,
   selectSearchTotalAmount
-} from '@app/pages/Search/store'
+} from '@app/features/SearchPage/store'
 import { sortGenresAlphabetically } from '@app/utils'
 import { SearchResultsTestIds } from './SearchResults.constants'
-import './SearchResults.scss'
 
 export const SearchResults = () => {
   const dispatch = useAppDispatch()
   const movies = useAppSelector(selectFilteredAndSortedMovies)
   const status = useAppSelector(selectSearchStatus)
+  const searchQuery = useAppSelector(selectSearchQuery)
   const totalAmount = useAppSelector(selectSearchTotalAmount)
-  const { query } = useParams<{ query: string }>()
+  const {
+    query: { query }
+  } = useRouter()
 
   useEffect(() => {
-    if (query) {
-      dispatch(fetchMoviesThunk(query))
+    if (query && searchQuery !== query) {
+      dispatch(fetchMoviesThunk(query as string))
     }
-  }, [dispatch, query])
+  }, [dispatch, query, searchQuery])
 
   if (status === SearchStatus.NO_RESULTS || status === SearchStatus.ERROR) {
     return <NoSearchResults />

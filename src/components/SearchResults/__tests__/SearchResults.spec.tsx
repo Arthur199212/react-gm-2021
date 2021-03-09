@@ -4,7 +4,7 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { SearchResults, SearchResultsTestIds } from '@app/components'
 import { API_URL } from '@app/config'
-import { RoutePath } from '@app/routes'
+import { RoutePath } from '@app/features/MoviePage/__tests__/node_modules/@app/routes'
 import { render } from '@app/tests/testing-utils'
 import { server } from '@app/tests/mocks/server'
 

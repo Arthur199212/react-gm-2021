@@ -1,4 +1,4 @@
-@import 'variables';
+@import './variables';
 
 html,
 body,
@@ -137,7 +137,7 @@ button {
 }
 
 // GLOBAL CUSTOM STYLES
-#app {
+#__next {
   display: flex;
   flex-direction: column;
   height: 100%;

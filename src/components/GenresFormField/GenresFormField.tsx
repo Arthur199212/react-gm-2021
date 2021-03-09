@@ -10,7 +10,6 @@ import {
 import { useClickOutside } from '@app/hooks'
 import { sortGenresAlphabetically } from '@app/utils'
 import { GENRES, GenresFormFieldTestIds } from './GenresFormField.constants'
-import './GenresFormField.scss'
 
 export const GenresFormField = (props: FormFieldProps) => {
   const [, { value }, { setValue }] = useField<any>(props)

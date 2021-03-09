@@ -1,6 +1,5 @@
 import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import classNames from 'classnames'
-import './InputBox.scss'
 
 type InputBoxProps = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> & {
   error?: boolean

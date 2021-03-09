@@ -1,5 +1,4 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
-import './Card.scss'
 
 type CardProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 
