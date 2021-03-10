@@ -2,3 +2,5 @@ build
 dist
 node_modules
 src/assets
+src/stories/assets
+storybook-static
