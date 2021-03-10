@@ -1,12 +1,17 @@
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import 'isomorphic-fetch'
 import { App, ErrorBoundary } from './components'
+import { store } from './store'
 import 'normalize.css'
 import './styles/index.scss'
 
 render(
-  <ErrorBoundary>
-    <App />
-  </ErrorBoundary>,
+  <Provider store={store}>
+    <ErrorBoundary>
+      <App />
+    </ErrorBoundary>
+  </Provider>,
   document.getElementById('app')
 )

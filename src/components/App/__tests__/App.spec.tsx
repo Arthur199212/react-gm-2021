@@ -1,10 +1,20 @@
+import { render } from '@testing-library/react'
 import React from 'react'
-import { render, screen } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import { store } from '@app/store'
 import { App } from '@app/components'
 
 describe('App component', () => {
+  const setup = () =>
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    )
+
   it('should render properly', () => {
-    render(<App />)
-    expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/find your movie/i)
+    const { asFragment } = setup()
+
+    expect(asFragment()).toMatchSnapshot()
   })
 })

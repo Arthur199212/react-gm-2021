@@ -2,6 +2,7 @@
 
 .app-textarea {
   @include text-field-box;
+  @include scrollbar;
 
   &[class*='no-resize'] {
     resize: none;

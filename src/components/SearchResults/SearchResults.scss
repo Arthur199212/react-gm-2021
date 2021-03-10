@@ -11,6 +11,10 @@
 .search-results-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
   width: 100%;
+
+  &[class*='centered'] {
+    justify-content: center;
+    margin: 3rem auto 0;
+  }
 }

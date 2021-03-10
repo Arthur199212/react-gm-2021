@@ -1,18 +1,23 @@
 import React, { KeyboardEvent } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Button, InputBox } from '@app/components'
+import { useAppDispatch, useAppSelector } from '@app/hooks'
+import { selectSearchQuery, setQuery } from '@app/pages/Search/store'
 import './SearchBox.scss'
 
-type SearchBoxProps = {
-  onSearch: () => void
-  query: string
-  setQuery: (query: string) => void
-}
+export const SearchBox = () => {
+  const dispatch = useAppDispatch()
+  const history = useHistory()
+  const query = useAppSelector(selectSearchQuery)
 
-export const SearchBox = ({ query, onSearch, setQuery }: SearchBoxProps) => {
+  const handlePerformSearch = () => {
+    history.push(`/search/${encodeURIComponent(query.trim())}`)
+    dispatch(setQuery(''))
+  }
+
   const handleKeyDown = ({ key }: KeyboardEvent) => {
     if (key !== 'Enter') return
-
-    onSearch()
+    handlePerformSearch()
   }
 
   return (
@@ -24,10 +29,10 @@ export const SearchBox = ({ query, onSearch, setQuery }: SearchBoxProps) => {
         <InputBox
           placeholder='What do you want to watch?'
           value={query}
-          onChange={({ target: { value } }) => setQuery(value)}
+          onChange={({ target: { value } }) => dispatch(setQuery(value))}
           onKeyDown={handleKeyDown}
         />
-        <Button onClick={onSearch}>SEARCH</Button>
+        <Button onClick={handlePerformSearch}>SEARCH</Button>
       </div>
     </div>
   )

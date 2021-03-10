@@ -1,32 +1,28 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Form, FormContent, Modal } from '@app/components'
-import { RoutePaths } from '@app/routes'
+import { Button, MovieForm, MovieFormContent, Modal } from '@app/components'
+import { RoutePath } from '@app/routes'
 import { HeaderTestIds } from './Header.constants'
 import './Header.scss'
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false)
 
-  const handleClick = () => {
-    setIsOpen(true)
-  }
-
-  const handleClose = () => {
-    setIsOpen(false)
-  }
-
   return (
     <header className='header'>
       <div className='header-container container'>
-        <Link to={RoutePaths.ROOT}>
+        <Link to={RoutePath.ROOT}>
           <span className='title'>MovieSearchApp</span>
         </Link>
-        <Button data-testid={HeaderTestIds.BUTTON} onClick={handleClick}>
+        <Button data-testid={HeaderTestIds.BUTTON} onClick={() => setIsOpen(true)}>
           ADD MOVIE
         </Button>
         <Modal open={isOpen}>
-          <Form content={FormContent.CREATE} onClose={handleClose} />
+          <MovieForm
+            content={MovieFormContent.CREATE}
+            onClose={() => setIsOpen(false)}
+            open={isOpen}
+          />
         </Modal>
       </div>
     </header>

@@ -1,23 +1,53 @@
-/* eslint-disable camelcase */
-import React from 'react'
-import { MovieCard, NoSearchResults } from '@app/components'
-import { MOVIES } from '@app/tests/mock-data'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import { DualRingSpinner, MovieCard, NoSearchResults } from '@app/components'
+import { useAppDispatch, useAppSelector } from '@app/hooks'
+import {
+  fetchMoviesThunk,
+  SearchStatus,
+  selectFilteredAndSortedMovies,
+  selectSearchStatus,
+  selectSearchTotalAmount
+} from '@app/pages/Search/store'
+import { sortGenresAlphabetically } from '@app/utils'
 import { SearchResultsTestIds } from './SearchResults.constants'
 import './SearchResults.scss'
 
 export const SearchResults = () => {
-  if (!MOVIES.length) return <NoSearchResults />
+  const dispatch = useAppDispatch()
+  const movies = useAppSelector(selectFilteredAndSortedMovies)
+  const status = useAppSelector(selectSearchStatus)
+  const totalAmount = useAppSelector(selectSearchTotalAmount)
+  const { query } = useParams<{ query: string }>()
+
+  useEffect(() => {
+    if (query) {
+      dispatch(fetchMoviesThunk(query))
+    }
+  }, [dispatch, query])
+
+  if (status === SearchStatus.NO_RESULTS || status === SearchStatus.ERROR) {
+    return <NoSearchResults />
+  }
+
+  if (status === SearchStatus.LOADING) {
+    return (
+      <div className='search-results-container centered'>
+        <DualRingSpinner />
+      </div>
+    )
+  }
 
   return (
     <>
       <div className='movies-count-box'>
-        <span className='movies-count'>39</span> movies found
+        <span className='movies-count'>{totalAmount}</span> movies found
       </div>
       <section className='search-results-container' data-testid={SearchResultsTestIds.CONTAINER}>
-        {MOVIES.map(({ id, genres, poster_path, release_date, title, vote_average }) => (
+        {movies?.map(({ id, genres, poster_path, release_date, title, vote_average }) => (
           <MovieCard
             key={id}
-            description={genres.join(', ')}
+            description={sortGenresAlphabetically(genres)}
             id={id}
             image={poster_path}
             rating={vote_average}

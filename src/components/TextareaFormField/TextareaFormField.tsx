@@ -1,16 +1,9 @@
-import React, { ChangeEvent, DetailedHTMLProps, TextareaHTMLAttributes } from 'react'
-import { TextareaBox } from '@app/components'
+import React from 'react'
+import { TextareaBox, TextareaBoxProps } from '@app/components'
 import './TextareaFormField.scss'
 
-type TextareaFormFieldProps = DetailedHTMLProps<
-  TextareaHTMLAttributes<HTMLTextAreaElement>,
-  HTMLTextAreaElement
-> & {
+type TextareaFormFieldProps = TextareaBoxProps & {
   label: string
-  onChange: (event: ChangeEvent<HTMLTextAreaElement>) => void
-  placeholder?: string
-  type?: string
-  value?: string | number
 }
 
 export const TextareaFormField = ({ label, ...rest }: TextareaFormFieldProps) => (

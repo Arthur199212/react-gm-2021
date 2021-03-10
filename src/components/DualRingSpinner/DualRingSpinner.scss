@@ -1,0 +1,29 @@
+@import 'variables';
+
+.app-dual-ring-spinner {
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+
+  &::after {
+    animation: app-dual-ring-spinner 1.2s linear infinite;
+    border: 6px solid $lightCrimson;
+    border-color: $lightCrimson transparent $lightCrimson transparent;
+    border-radius: 50%;
+    content: " ";
+    display: block;
+    height: 64px;
+    margin: 8px;
+    width: 64px;
+  }
+}
+
+@keyframes app-dual-ring-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

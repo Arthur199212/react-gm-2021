@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieForm Component should render properly in MovieFormContent type is Create 1`] = `[Function]`;
+
+exports[`MovieForm Component should render properly in MovieFormContent type is Edit 1`] = `[Function]`;

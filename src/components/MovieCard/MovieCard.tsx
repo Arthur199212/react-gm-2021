@@ -1,23 +1,29 @@
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
   Card,
   CardMedia,
-  DeleteModalContent,
+  DeleteMovieForm,
   Dropdown,
   DropdownItem,
-  Form,
-  FormContent,
+  MovieForm,
+  MovieFormContent,
   Modal,
   SmallModal,
   ShowMoreButton
 } from '@app/components'
 import { useClickOutside } from '@app/hooks'
+import { MovieCardTestIds } from './MovieCard.constants'
 import './MovieCard.scss'
-import { Link } from 'react-router-dom'
 
-type MovieCardProps = {
+enum MovieCardDropdownType {
+  DELETE = 'delete',
+  EDIT = 'edit'
+}
+
+export type MovieCardProps = {
   description: string
-  id: string
+  id: number
   image: string
   rating: number
   release: string
@@ -30,14 +36,14 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
   const [editModalOpen, setEditModalOpen] = useState(false)
   const [deleteModalOpen, setDeleteModalOpen] = useState(false)
 
-  const handleDropdownClose = useCallback(() => setDropdownOpen(false), [])
+  const handleDropdownClose = () => setDropdownOpen(false)
 
   useClickOutside(dropdownRef, handleDropdownClose, dropdownOpen)
 
   const handleClick = (str: string) => {
     setDropdownOpen(false)
 
-    if (str === 'edit') {
+    if (str === MovieCardDropdownType.EDIT) {
       setEditModalOpen(true)
       return
     }
@@ -53,9 +59,13 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
             <CardMedia image={image} title={title} />
           </Link>
           <ShowMoreButton open={dropdownOpen} onClick={() => setDropdownOpen(!dropdownOpen)} />
-          <Dropdown elRef={dropdownRef} open={dropdownOpen}>
-            <DropdownItem onClick={() => handleClick('edit')}>Edit</DropdownItem>
-            <DropdownItem onClick={() => handleClick('delete')}>Delete</DropdownItem>
+          <Dropdown data-testid={MovieCardTestIds.DROPDOWN} elRef={dropdownRef} open={dropdownOpen}>
+            <DropdownItem onClick={() => handleClick(MovieCardDropdownType.EDIT)}>
+              Edit
+            </DropdownItem>
+            <DropdownItem onClick={() => handleClick(MovieCardDropdownType.DELETE)}>
+              Delete
+            </DropdownItem>
           </Dropdown>
         </div>
         <Link to={`/movie/${id}`}>
@@ -65,14 +75,19 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
         <div className='release text-truncate'>
           {release}
           <i className='rating-icon fas fa-star'></i>
-          <span className='rating-value'>{rating}/10</span>
+          <span className='rating-value'>{rating || 0}/10</span>
         </div>
       </Card>
       <Modal open={editModalOpen}>
-        <Form content={FormContent.EDIT} onClose={() => setEditModalOpen(false)} />
+        <MovieForm
+          content={MovieFormContent.EDIT}
+          movieId={String(id)}
+          onClose={() => setEditModalOpen(false)}
+          open={editModalOpen}
+        />
       </Modal>
       <SmallModal open={deleteModalOpen}>
-        <DeleteModalContent onClose={() => setDeleteModalOpen(false)} />
+        <DeleteMovieForm movieId={String(id)} onClose={() => setDeleteModalOpen(false)} />
       </SmallModal>
     </>
   )
