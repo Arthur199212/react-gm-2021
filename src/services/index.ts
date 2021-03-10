@@ -1,1 +1,1 @@
-export * from './movies/movies.service'
+export * from './movies'

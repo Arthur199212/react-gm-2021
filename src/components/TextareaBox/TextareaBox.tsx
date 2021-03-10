@@ -6,12 +6,13 @@ export type TextareaBoxProps = DetailedHTMLProps<
   TextareaHTMLAttributes<HTMLTextAreaElement>,
   HTMLTextAreaElement
 > & {
+  error?: boolean
   noResize?: boolean
 }
 
-export const TextareaBox = ({ noResize, ...rest }: TextareaBoxProps) => (
+export const TextareaBox = ({ error, noResize, ...rest }: TextareaBoxProps) => (
   <textarea
-    className={classNames('app-textarea', { 'no-resize': noResize })}
+    className={classNames('app-textarea', { 'no-resize': noResize }, { error })}
     autoComplete='off'
     rows={4}
     placeholder='TextareaBox'

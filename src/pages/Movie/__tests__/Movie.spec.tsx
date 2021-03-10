@@ -8,7 +8,7 @@ import { RoutePath } from '@app/routes'
 import { MOCK_MOVIE } from '@app/tests/mocks/mock-data'
 import { render } from '@app/tests/testing-utils'
 import { server } from '@app/tests/mocks/server'
-import { MovieFormTestIds, SearchResultsTestIds } from '@app/components'
+import { EditMovieFormTestIds, SearchResultsTestIds } from '@app/components'
 import userEvent from '@testing-library/user-event'
 
 describe('Movie Page', () => {
@@ -112,7 +112,7 @@ describe('Movie Page', () => {
 
     fireEvent.click(screen.getByLabelText(/submit/i))
 
-    const successIcon = await screen.findByTestId(MovieFormTestIds.SUCCESS_ICON)
+    const successIcon = await screen.findByTestId(EditMovieFormTestIds.SUCCESS_ICON)
     expect(successIcon).toBeInTheDocument()
   }, 30000)
 })

@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
 import './DualRingSpinner.scss'
 
-export const DualRingSpinner = () => <div className='app-dual-ring-spinner'></div>
+type DualRingSpinnerProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
+
+export const DualRingSpinner = (props: DualRingSpinnerProps) => (
+  <div className='app-dual-ring-spinner' {...props}></div>
+)

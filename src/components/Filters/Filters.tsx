@@ -8,7 +8,6 @@ import {
   setSortBy,
   SortBy
 } from '@app/pages/Search/store'
-import { toKebabCase } from '@app/utils'
 import { FiltersTestIds, SORT_BY_OPTIONS, TABS } from './Filters.constants'
 import './Filters.scss'
 
@@ -50,10 +49,7 @@ export const Filters = () => {
           </Button>
           <Dropdown data-testid={FiltersTestIds.DROPDOWN} elRef={dropdownRef} open={isOpen}>
             {SORT_BY_OPTIONS.map(optionName => (
-              <DropdownItem
-                key={`dropdown-${toKebabCase(optionName)}`}
-                onClick={() => handleClick(optionName)}
-              >
+              <DropdownItem key={`dropdown-${optionName}`} onClick={() => handleClick(optionName)}>
                 {optionName}
               </DropdownItem>
             ))}

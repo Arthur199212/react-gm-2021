@@ -60,10 +60,18 @@ $extraLarge: 1200px;
   width: 100%;
 }
 
+@mixin form-field-error-text {
+  color: $lightCrimson;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-top: 0.3rem;
+}
+
 @mixin form-field-label {
   color: $lightCrimson;
   font-size: 0.9rem;
   font-weight: $bold;
+  text-transform: uppercase;
   width: 100%;
 }
 

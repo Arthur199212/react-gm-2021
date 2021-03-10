@@ -4,13 +4,11 @@ import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import {
   DeleteMovieFormTestIds,
-  DropdownItemTestIds,
   ModalTestIds,
   MovieCard,
   MovieCardProps,
-  MovieFormTestIds,
-  ShowMoreButtonTestIds,
-  SmallModalTestIds
+  EditMovieFormTestIds,
+  ShowMoreButtonTestIds
 } from '@app/components'
 import { store } from '@app/store'
 import { MovieCardTestIds } from '../MovieCard.constants'
@@ -41,7 +39,7 @@ describe('MovieCard Component', () => {
     expect(screen.getByText(mockProps.release)).toBeInTheDocument()
   })
 
-  it('should show dropdown if ShowMoreButton should work', async () => {
+  it('should show dropdown after clicking on ShowMoreButton', async () => {
     setup()
 
     expect(screen.getByTestId(MovieCardTestIds.DROPDOWN).classList).not.toContain('open')
@@ -50,12 +48,6 @@ describe('MovieCard Component', () => {
     expect(screen.getByTestId(MovieCardTestIds.DROPDOWN).classList).toContain('open')
 
     fireEvent.click(document)
-    expect(screen.getByTestId(MovieCardTestIds.DROPDOWN).classList).not.toContain('open')
-
-    fireEvent.click(screen.getByTestId(ShowMoreButtonTestIds.BUTTON))
-    expect(screen.getByTestId(MovieCardTestIds.DROPDOWN).classList).toContain('open')
-
-    fireEvent.click(screen.getAllByTestId(DropdownItemTestIds.DROPDOWN_ITEM)[0])
     expect(screen.getByTestId(MovieCardTestIds.DROPDOWN).classList).not.toContain('open')
   })
 
@@ -66,7 +58,7 @@ describe('MovieCard Component', () => {
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).toContain('open')
 
-    fireEvent.click(await screen.findByTestId(MovieFormTestIds.CLOSE_ICON))
+    fireEvent.click(await screen.findByTestId(EditMovieFormTestIds.CLOSE_ICON))
 
     expect(screen.getByTestId(ModalTestIds.CONTAINER).classList).not.toContain('open')
   })
@@ -76,12 +68,12 @@ describe('MovieCard Component', () => {
 
     fireEvent.click(screen.getByText('Delete'))
 
-    const smallModal = await screen.findByTestId(SmallModalTestIds.CONTAINER)
+    const smallModal = await screen.findByTestId(MovieCardTestIds.SMALL_MODAL)
 
     expect(smallModal.classList).toContain('open')
 
-    fireEvent.click(screen.getByTestId(DeleteMovieFormTestIds.CLOSE_ICON))
+    fireEvent.click(screen.getAllByTestId(DeleteMovieFormTestIds.CLOSE_ICON).pop() as HTMLElement)
 
-    expect(screen.getByTestId(SmallModalTestIds.CONTAINER).classList).not.toContain('open')
+    expect(smallModal.classList).not.toContain('open')
   })
 })

@@ -1,0 +1,7 @@
+@import 'variables';
+
+.genres-form-field-modal-title {
+  @include form-field-label;
+
+  margin-bottom: 0.5rem;
+}

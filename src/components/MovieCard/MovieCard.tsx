@@ -6,8 +6,7 @@ import {
   DeleteMovieForm,
   Dropdown,
   DropdownItem,
-  MovieForm,
-  MovieFormContent,
+  EditMovieForm,
   Modal,
   SmallModal,
   ShowMoreButton
@@ -79,15 +78,18 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
         </div>
       </Card>
       <Modal open={editModalOpen}>
-        <MovieForm
-          content={MovieFormContent.EDIT}
+        <EditMovieForm
           movieId={String(id)}
           onClose={() => setEditModalOpen(false)}
           open={editModalOpen}
         />
       </Modal>
-      <SmallModal open={deleteModalOpen}>
-        <DeleteMovieForm movieId={String(id)} onClose={() => setDeleteModalOpen(false)} />
+      <SmallModal data-testid={MovieCardTestIds.SMALL_MODAL} open={deleteModalOpen}>
+        <DeleteMovieForm
+          movieId={String(id)}
+          onClose={() => setDeleteModalOpen(false)}
+          open={deleteModalOpen}
+        />
       </SmallModal>
     </>
   )

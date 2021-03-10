@@ -4,8 +4,10 @@ module.exports = {
     '!**/node_modules/**',
     '!**/src/index.tsx',
     '!**/src/assets/**',
+    '!**/src/config/**',
     '!**/src/server/**',
-    '!**/src/tests/**'
+    '!**/src/tests/**',
+    '!**/src/validation/**'
   ],
   preset: 'ts-jest',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],

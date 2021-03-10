@@ -1,5 +1,8 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "jest.runAllTestsFirst": false,
+  "jest.autoEnable": false,
+  "jest.showCoverageOnLoad": false
 }
