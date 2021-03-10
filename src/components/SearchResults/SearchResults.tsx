@@ -1,12 +1,9 @@
-import { useRouter } from 'next/router'
-import React, { useEffect } from 'react'
+import React from 'react'
 import { DualRingSpinner, MovieCard, NoSearchResults } from '@app/components'
-import { useAppDispatch, useAppSelector } from '@app/hooks'
+import { useAppSelector } from '@app/hooks'
 import {
-  fetchMoviesThunk,
   SearchStatus,
   selectFilteredAndSortedMovies,
-  selectSearchQuery,
   selectSearchStatus,
   selectSearchTotalAmount
 } from '@app/features/SearchPage/store'
@@ -14,20 +11,9 @@ import { sortGenresAlphabetically } from '@app/utils'
 import { SearchResultsTestIds } from './SearchResults.constants'
 
 export const SearchResults = () => {
-  const dispatch = useAppDispatch()
   const movies = useAppSelector(selectFilteredAndSortedMovies)
   const status = useAppSelector(selectSearchStatus)
-  const searchQuery = useAppSelector(selectSearchQuery)
   const totalAmount = useAppSelector(selectSearchTotalAmount)
-  const {
-    query: { query }
-  } = useRouter()
-
-  useEffect(() => {
-    if (query && searchQuery !== query) {
-      dispatch(fetchMoviesThunk(query as string))
-    }
-  }, [dispatch, query, searchQuery])
 
   if (status === SearchStatus.NO_RESULTS || status === SearchStatus.ERROR) {
     return <NoSearchResults />
@@ -36,7 +22,7 @@ export const SearchResults = () => {
   if (status === SearchStatus.LOADING) {
     return (
       <div className='search-results-container centered'>
-        <DualRingSpinner />
+        <DualRingSpinner data-testid={SearchResultsTestIds.SPINNER} />
       </div>
     )
   }

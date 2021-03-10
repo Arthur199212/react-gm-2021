@@ -17,7 +17,3 @@ To start local Movies API Service:
 3. Run `npm start` to start Movies API Service
 4. Open [`http://localhost:4000/api-docs`](http://localhost:4000/api-docs) to see Swagger documentation
 5. Server itself will be running at [`http://localhost:4000/`](http://localhost:4000/)
-
-// TODO
-- delete what we don't need from package.json (yarn prune?)
-- correct tests if needed

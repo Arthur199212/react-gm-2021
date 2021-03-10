@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardMedia, DualRingSpinner } from '@app/components'
-import { useAppSelector } from '@app/hooks'
 import { MovieStatus, selectMovie, selectMovieStatus } from '@app/features/MoviePage/store'
+import { useAppSelector } from '@app/hooks'
 
 export const MovieDetails = () => {
   const movie = useAppSelector(selectMovie)

@@ -3,13 +3,12 @@ import userEvent from '@testing-library/user-event'
 import React from 'react'
 import { GenresFormFieldTestIds } from '@app/components'
 import { EditMovieForm, EditMovieFormProps, EditMovieFormTestIds } from '@app/features'
+import { SearchStatus } from '@app/features/SearchPage/store'
+import { INITIAL_APP_STATE, RootState } from '@app/store'
+import { MOCK_MOVIE, MOCK_MOVIES } from '@app/tests/mocks/mock-data'
 import { render } from '@app/tests/testing-utils'
-import { server } from '@app/tests/mocks/server'
-import { API_URL } from '@app/config'
-import { rest } from 'msw'
-import { MOCK_MOVIE } from '@app/tests/mocks/mock-data'
 
-describe('MovieForm Component', () => {
+describe('EditMovieForm feature', () => {
   const onClose = jest.fn()
   const defaultProps: EditMovieFormProps = {
     movieId: String(MOCK_MOVIE.id),
@@ -17,18 +16,8 @@ describe('MovieForm Component', () => {
     open: true
   }
   const mockText = 'test'
-  const setup = (props: EditMovieFormProps = defaultProps) => render(<EditMovieForm {...props} />)
-
-  it('should show error message in case of an error while fetching movie to Edit', async () => {
-    server.use(
-      rest.get(`${API_URL}/movies/:movieId`, (req, res, ctx) => {
-        return res(ctx.status(500))
-      })
-    )
-    setup()
-
-    expect(await screen.findByText(/sorry, something went wrong/i)).toBeInTheDocument()
-  })
+  const setup = (props: EditMovieFormProps = defaultProps, state?: RootState) =>
+    render(<EditMovieForm {...props} />, { state })
 
   it('select genre works properly', async () => {
     setup()
@@ -91,7 +80,16 @@ describe('MovieForm Component', () => {
   })
 
   it('submit button works properly', async () => {
-    setup()
+    const state: RootState = {
+      ...INITIAL_APP_STATE,
+      search: {
+        ...INITIAL_APP_STATE.search,
+        movies: MOCK_MOVIES,
+        status: SearchStatus.SUCCESS,
+        totalAmount: MOCK_MOVIES.length
+      }
+    }
+    setup(undefined, state)
     const input = (await screen.findByLabelText(/title/i)) as HTMLInputElement
 
     userEvent.clear(input)
@@ -116,25 +114,5 @@ describe('MovieForm Component', () => {
     fireEvent.click(screen.getByLabelText(/submit/i))
 
     expect(await screen.findByTestId(EditMovieFormTestIds.SUCCESS_ICON)).toBeInTheDocument()
-  })
-
-  it('should work properly in case of an error while editing a movie', async () => {
-    server.use(
-      rest.put(`${API_URL}/movies`, (req, res, ctx) => {
-        return res(ctx.status(500))
-      })
-    )
-    setup()
-    const input = (await screen.findByLabelText(/title/i)) as HTMLInputElement
-
-    expect(input.value).toBe(MOCK_MOVIE.title)
-
-    userEvent.clear(input)
-    userEvent.type(input, mockText)
-    expect(input.value).toBe(mockText)
-
-    fireEvent.click(screen.getByLabelText(/submit/i))
-
-    expect(await screen.findByText(/sorry, something went wrong/i)).toBeInTheDocument()
   })
 })

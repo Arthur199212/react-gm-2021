@@ -1,11 +1,9 @@
-import { fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, screen } from '@testing-library/react'
 import React from 'react'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
 import { ModalTestIds, MovieCard, MovieCardProps, ShowMoreButtonTestIds } from '@app/components'
 import { DeleteMovieFormTestIds, EditMovieFormTestIds } from '@app/features'
-import { store } from '@app/store'
 import { MovieCardTestIds } from '../MovieCard.constants'
+import { render } from '@app/tests/testing-utils'
 
 describe('MovieCard Component', () => {
   const mockProps = {
@@ -17,14 +15,7 @@ describe('MovieCard Component', () => {
     title: 'test title'
   }
 
-  const setup = (props: MovieCardProps = mockProps) =>
-    render(
-      <Provider store={store}>
-        <Router>
-          <MovieCard {...props} />
-        </Router>
-      </Provider>
-    )
+  const setup = (props: MovieCardProps = mockProps) => render(<MovieCard {...props} />)
 
   it('should render properly', () => {
     setup()

@@ -3,15 +3,20 @@ import { render } from '@testing-library/react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import React, { FC, ReactElement, ReactNode } from 'react'
 import { Provider } from 'react-redux'
-import { rootReducer } from '@app/store'
+import { rootReducer, RootState } from '@app/store'
 import mockRouter from '@app/tests/mocks/mock-router'
 
 type AllTestProvidersProps = CustomRenderOptions & WrapperProps
 
-const AllTestProviders: FC = ({ children, query = {} }: AllTestProvidersProps) => {
+const AllTestProviders: FC = ({
+  children,
+  query = mockRouter.query,
+  state
+}: AllTestProvidersProps) => {
   const store = configureStore({
     reducer: rootReducer,
-    devTools: false
+    devTools: false,
+    preloadedState: state
   })
 
   return (
@@ -21,11 +26,14 @@ const AllTestProviders: FC = ({ children, query = {} }: AllTestProvidersProps) =
   )
 }
 
-type CustomRenderOptions = { query?: {} }
+type CustomRenderOptions = {
+  query?: {}
+  state?: RootState
+}
 
 type WrapperProps = { children?: ReactNode }
 
-export const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
+const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
   const wrapper = (props: WrapperProps) => <AllTestProviders {...props} {...options} />
 
   return render(ui, { wrapper })

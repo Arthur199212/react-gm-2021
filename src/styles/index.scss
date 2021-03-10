@@ -2,8 +2,8 @@
 @import './globals';
 @import './variables';
 
-// As temporary solution while migration to Next.js
-// It might be better to use built-in CSS modules
+// As a temporary solution while migrating to Next.js
+// It might be better to use built-in CSS modules in some cases
 // Components
 @import '../components/Button/Button.scss';
 @import '../components/Card/Card.scss';
