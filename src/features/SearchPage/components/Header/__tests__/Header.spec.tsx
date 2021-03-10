@@ -1,6 +1,7 @@
 import React from 'react'
 import { fireEvent, screen } from '@testing-library/react'
-import { AddMovieFormTestIds, ModalTestIds } from '@app/components'
+import { ModalTestIds } from '@app/components'
+import { AddMovieFormTestIds } from '@app/features'
 import { Header, HeaderTestIds } from '@app/features/SearchPage/components'
 import { render } from '@app/tests/testing-utils'
 

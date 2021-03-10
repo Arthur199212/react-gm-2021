@@ -2,12 +2,8 @@ import { fireEvent, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import React from 'react'
 import { rest } from 'msw'
-import {
-  AddMovieForm,
-  AddMovieFormProps,
-  AddMovieFormTestIds,
-  GenresFormFieldTestIds
-} from '@app/components'
+import { GenresFormFieldTestIds } from '@app/components'
+import { AddMovieForm, AddMovieFormProps, AddMovieFormTestIds } from '@app/features'
 import { API_URL } from '@app/config'
 import { render } from '@app/tests/testing-utils'
 import { server } from '@app/tests/mocks/server'

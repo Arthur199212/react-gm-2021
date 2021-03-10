@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movie Page should render properly 1`] = `
+<DocumentFragment>
+  <div
+    class="app-movie-page content"
+  >
+    <header
+      class="header"
+    >
+      <div
+        class="header-container container"
+      >
+        <span
+          class="title"
+        >
+          MovieSearchApp
+        </span>
+        <i
+          class="search-icon fas fa-search"
+        />
+      </div>
+    </header>
+    <main
+      class="main"
+    >
+      <div
+        class="movie-details-container container"
+      >
+        <div
+          class="app-dual-ring-spinner"
+        />
+      </div>
+      <div
+        class="container"
+      >
+        <div
+          class="filters-container"
+          data-testid="filters-container"
+        >
+          <ul
+            class="app-tabs"
+          >
+            <li
+              class="app-tab active"
+            >
+              all
+            </li>
+            <li
+              class="app-tab"
+            >
+              comedy
+            </li>
+            <li
+              class="app-tab"
+            >
+              crime
+            </li>
+            <li
+              class="app-tab"
+            >
+              documentary
+            </li>
+            <li
+              class="app-tab"
+            >
+              horror
+            </li>
+          </ul>
+          <div
+            class="dropdown-container"
+          >
+            <span
+              class="label"
+            >
+              SORT BY
+            </span>
+            <div
+              class="dropdown-menu"
+            >
+              <a
+                class="app-button"
+                data-testid="filters-dropdown-button"
+              >
+                release date
+              </a>
+              <ul
+                class="app-dropdown"
+                data-testid="filters-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  rating
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  release date
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div
+          class="no-results-container"
+        >
+          Sorry, but nothing matched your search criteria.
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer
+    class="app-footer"
+  >
+    MovieSearchApp
+  </footer>
+</DocumentFragment>
+`;

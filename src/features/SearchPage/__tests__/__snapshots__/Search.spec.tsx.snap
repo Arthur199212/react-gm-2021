@@ -11,15 +11,11 @@ exports[`Search Page should render properly 1`] = `
       <div
         class="header-container container"
       >
-        <a
-          href="/"
+        <span
+          class="title"
         >
-          <span
-            class="title"
-          >
-            MovieSearchApp
-          </span>
-        </a>
+          MovieSearchApp
+        </span>
         <a
           class="app-button"
           data-testid="header-button"
@@ -699,10 +695,948 @@ exports[`Search Page should render properly 1`] = `
           </div>
         </div>
         <div
-          class="no-results-container"
+          class="movies-count-box"
         >
-          Sorry, but nothing matched your search criteria.
+          <span
+            class="movies-count"
+          >
+            8
+          </span>
+           movies found
         </div>
+        <section
+          class="search-results-container"
+          data-testid="search-results-container"
+        >
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/337167"
+              >
+                <img
+                  alt="Fifty Shades Freed"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/3kcEGnYBHDeqmdYf8ZRbKdfmlUy.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Fifty Shades Freed
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Drama, Romance
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/181808"
+              >
+                <img
+                  alt="Star Wars: The Last Jedi"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/kOVEVeg59E0wsnXmF9nrh6OmWII.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Star Wars: The Last Jedi
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Adventure, Fantasy, Science Fiction
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/284054"
+              >
+                <img
+                  alt="Black Panther"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/uxzzxijgPIY7slzFvMotPv8wjKA.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Black Panther
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Action, Adventure, Fantasy, Science Fiction
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/354912"
+              >
+                <img
+                  alt="Coco"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/eKi8dIrr8voobbaGzDpe8w0PVbC.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Coco
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Adventure, Animation, Comedy, Family
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/333339"
+              >
+                <img
+                  alt="Ready Player One"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/pU1ULUq8D3iRxl1fdX2lZIzdHuI.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Ready Player One
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Action, Adventure, Science Fiction
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/338970"
+              >
+                <img
+                  alt="Tomb Raider"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/ePyN2nX9t8SOl70eRW47Q29zUFO.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Tomb Raider
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Action, Adventure
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/284053"
+              >
+                <img
+                  alt="Thor: Ragnarok"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Thor: Ragnarok
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Action, Adventure, Fantasy
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                7.3/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="app-card"
+          >
+            <div
+              class="image-container"
+            >
+              <a
+                class="card-media-link"
+                href="/movie/1"
+              >
+                <img
+                  alt="Beauty and the Beast"
+                  class="app-card-media"
+                  draggable="false"
+                  src="https://image.tmdb.org/t/p/w500/tWqifoYuwLETmmasnGHO7xBjEtt.jpg"
+                />
+              </a>
+              <div
+                class="app-show-more-button"
+                data-testid="show-more-btn"
+              >
+                <i
+                  class="fas fa-ellipsis-v"
+                />
+              </div>
+              <ul
+                class="app-dropdown"
+                data-testid="movie-card-dropdown"
+              >
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Edit
+                </li>
+                <li
+                  class="app-dropdown-item"
+                  data-testid="dropdown-item"
+                >
+                  Delete
+                </li>
+              </ul>
+            </div>
+            <h2
+              class="title text-truncate"
+            >
+              Beauty and the Beast
+            </h2>
+            <div
+              class="description text-truncate"
+            >
+              Family, Fantasy, Romance
+            </div>
+            <div
+              class="release text-truncate"
+            >
+              2017
+              <i
+                class="rating-icon fas fa-star"
+              />
+              <span
+                class="rating-value"
+              >
+                6.8/10
+              </span>
+            </div>
+          </div>
+          <div
+            class="app-modal-container"
+            data-testid="modal-container"
+          >
+            <div
+              class="app-modal"
+            >
+              <div
+                class="app-dual-ring-spinner"
+              />
+            </div>
+          </div>
+          <div
+            class="app-small-modal-container"
+            data-testid="movie-card-small-modal"
+          >
+            <div
+              class="app-small-modal"
+            >
+              <div
+                class="delete-movie-form-container"
+              >
+                <h5
+                  class="delete-movie-form-header"
+                >
+                  DELETE MOVIE
+                </h5>
+                <i
+                  class="app-close-icon fas fa-times topRight"
+                  data-testid="delete-movie-form-close-icon"
+                />
+                <div
+                  class="delete-movie-form-text"
+                >
+                  Are you sure you want to delete this movie?
+                </div>
+              </div>
+              <div
+                class="delete-movie-form-actions-container"
+              >
+                <a
+                  class="app-button"
+                  data-testid="delete-movie-confirm-button"
+                >
+                  CONFIRM
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   </div>

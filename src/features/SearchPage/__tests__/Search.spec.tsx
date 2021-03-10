@@ -1,22 +1,16 @@
 import React from 'react'
-import { Provider } from 'react-redux'
-import { BrowserRouter as Router } from 'react-router-dom'
-import { render } from '@testing-library/react'
 import { SearchPage } from '@app/features'
-import { store } from '@app/store'
+import { render } from '@app/tests/testing-utils'
+import { screen } from '@testing-library/react'
+import { SearchResultsTestIds } from '@app/components'
 
 describe('Search Page', () => {
-  const setup = () =>
-    render(
-      <Provider store={store}>
-        <Router>
-          <SearchPage />
-        </Router>
-      </Provider>
-    )
+  const query = { query: 'test' }
 
-  it('should render properly', () => {
-    const { asFragment } = setup()
+  it('should render properly', async () => {
+    const { asFragment } = render(<SearchPage />, { query })
+
+    await screen.findByTestId(SearchResultsTestIds.CONTAINER)
 
     expect(asFragment()).toMatchSnapshot()
   })

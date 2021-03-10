@@ -2,14 +2,8 @@ import { fireEvent, render, screen } from '@testing-library/react'
 import React from 'react'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
-import {
-  DeleteMovieFormTestIds,
-  ModalTestIds,
-  MovieCard,
-  MovieCardProps,
-  EditMovieFormTestIds,
-  ShowMoreButtonTestIds
-} from '@app/components'
+import { ModalTestIds, MovieCard, MovieCardProps, ShowMoreButtonTestIds } from '@app/components'
+import { DeleteMovieFormTestIds, EditMovieFormTestIds } from '@app/features'
 import { store } from '@app/store'
 import { MovieCardTestIds } from '../MovieCard.constants'
 

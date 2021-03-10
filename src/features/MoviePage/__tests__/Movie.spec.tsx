@@ -1,18 +1,16 @@
 import { fireEvent, screen } from '@testing-library/react'
 import { rest } from 'msw'
 import React from 'react'
-import { Route } from 'react-router-dom'
 import { API_URL } from '@app/config'
-import { MoviePage } from '@app/features'
-import { RoutePath } from '@app/routes'
+import { EditMovieFormTestIds, MoviePage } from '@app/features'
 import { MOCK_MOVIE } from '@app/tests/mocks/mock-data'
 import { render } from '@app/tests/testing-utils'
 import { server } from '@app/tests/mocks/server'
-import { EditMovieFormTestIds, SearchResultsTestIds } from '@app/components'
+import { SearchResultsTestIds } from '@app/components'
 import userEvent from '@testing-library/user-event'
 
 describe('Movie Page', () => {
-  const route = '/movie/1'
+  const query = { movieId: '1' }
 
   it('should render properly', () => {
     const { asFragment } = render(<MoviePage />)
@@ -21,12 +19,7 @@ describe('Movie Page', () => {
   })
 
   it('should handle movieId URL param', async () => {
-    render(
-      <Route path={RoutePath.MOVIE}>
-        <MoviePage />
-      </Route>,
-      { route }
-    )
+    render(<MoviePage />, { query })
 
     expect(await screen.findByText(MOCK_MOVIE.title)).toBeInTheDocument()
   })
@@ -37,12 +30,7 @@ describe('Movie Page', () => {
         return res(ctx.status(500))
       })
     )
-    render(
-      <Route path={RoutePath.MOVIE}>
-        <MoviePage />
-      </Route>,
-      { route }
-    )
+    render(<MoviePage />, { query })
 
     expect(await screen.findByText(/Sorry, but such a movie was not found/i)).toBeInTheDocument()
   })
@@ -53,12 +41,7 @@ describe('Movie Page', () => {
         return res(ctx.json({ data: [], limit: 8, offset: 0, totalAmount: 0 }))
       })
     )
-    render(
-      <Route path={RoutePath.MOVIE}>
-        <MoviePage />
-      </Route>,
-      { route }
-    )
+    render(<MoviePage />, { query })
 
     expect(await screen.findByText(MOCK_MOVIE.title)).toBeInTheDocument()
 
@@ -73,12 +56,7 @@ describe('Movie Page', () => {
         return res(ctx.status(500))
       })
     )
-    render(
-      <Route path={RoutePath.MOVIE}>
-        <MoviePage />
-      </Route>,
-      { route }
-    )
+    render(<MoviePage />, { query })
 
     expect(await screen.findByText(MOCK_MOVIE.title)).toBeInTheDocument()
 
@@ -93,12 +71,7 @@ describe('Movie Page', () => {
         return res(ctx.json({ data: [MOCK_MOVIE], limit: 8, offset: 0, totalAmount: 1 }))
       })
     )
-    render(
-      <Route path={RoutePath.MOVIE}>
-        <MoviePage />
-      </Route>,
-      { route }
-    )
+    render(<MoviePage />, { query })
 
     expect(await screen.findByTestId(SearchResultsTestIds.CONTAINER)).toBeInTheDocument()
 
