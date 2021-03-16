@@ -1,3 +1,43 @@
 @import './fonts';
 @import './globals';
 @import './variables';
+
+// As a temporary solution while migrating to Next.js
+// It might be better to use built-in CSS modules in some cases
+// Components
+@import '../components/Button/Button.scss';
+@import '../components/Card/Card.scss';
+@import '../components/CardMedia/CardMedia.scss';
+@import '../components/CheckboxFormField/CheckboxFormField.scss';
+@import '../components/CloseIcon/CloseIcon.scss';
+@import '../components/Dropdown/Dropdown.scss';
+@import '../components/DropdownItem/DropdownItem.scss';
+@import '../components/DualRingSpinner/DualRingSpinner.scss';
+@import '../components/ErrorBoundary/ErrorBoundary.scss';
+@import '../components/Filters/Filters.scss';
+@import '../components/Footer/Footer.scss';
+@import '../components/FormField/FormField.scss';
+@import '../components/GenresFormField/GenresFormField.scss';
+@import '../components/InputBox/InputBox.scss';
+@import '../components/Modal/Modal.scss';
+@import '../components/MovieCard/MovieCard.scss';
+@import '../components/MovieForm/MovieForm.scss';
+@import '../components/NoSearchResults/NoSearchResults.scss';
+@import '../components/SearchResults/SearchResults.scss';
+@import '../components/ShowMoreButton/ShowMoreButton.scss';
+@import '../components/SmallModal/SmallModal.scss';
+@import '../components/SuccessIcon/SuccessIcon.scss';
+@import '../components/TabItem/TabItem.scss';
+@import '../components/Tabs/Tabs.scss';
+@import '../components/TextareaBox/TextareaBox.scss';
+@import '../components/TextareaFormField/TextareaFormField.scss';
+
+// Features
+@import '../features/DeleteMovieForm/DeleteMovieForm.scss';
+@import '../features/MoviePage/MoviePage.scss';
+@import '../features/MoviePage/components/Header/Header.scss';
+@import '../features/MoviePage/components/MovieDetails/MovieDetails.scss';
+@import '../features/NotFoundPage/NotFoundPage.scss';
+@import '../features/SearchPage/SearchPage.scss';
+@import '../features/SearchPage/components/Header/Header.scss';
+@import '../features/SearchPage/components/SearchBox/SearchBox.scss';

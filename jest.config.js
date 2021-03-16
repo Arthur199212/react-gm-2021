@@ -5,6 +5,7 @@ module.exports = {
     '!**/src/index.tsx',
     '!**/src/assets/**',
     '!**/src/config/**',
+    '!**/src/pages/_document.tsx',
     '!**/src/server/**',
     '!**/src/tests/**',
     '!**/src/validation/**'
@@ -21,8 +22,9 @@ module.exports = {
   resetMocks: true,
   setupFilesAfterEnv: [`<rootDir>/src/tests/jest-setup.ts`],
   testEnvironment: 'jsdom',
+  testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest'
+    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest'
   },
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$'
 }

@@ -1,7 +1,6 @@
 import { FieldHookConfig, useField } from 'formik'
 import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react'
 import { InputBox } from '@app/components'
-import './FormField.scss'
 
 export type FormFieldProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

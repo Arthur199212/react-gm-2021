@@ -1,39 +1,40 @@
+import { configureStore } from '@reduxjs/toolkit'
 import { render } from '@testing-library/react'
+import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import React, { FC, ReactElement, ReactNode } from 'react'
 import { Provider } from 'react-redux'
-import { Router } from 'react-router-dom'
 import { rootReducer, RootState } from '@app/store'
-import { createMemoryHistory } from 'history'
-import { configureStore } from '@reduxjs/toolkit'
+import mockRouter from '@app/tests/mocks/mock-router'
 
-type AllTestProvidersProps = {
-  children?: ReactNode
-  route?: string
-}
+type AllTestProvidersProps = CustomRenderOptions & WrapperProps
 
-const AllTestProviders: FC = ({ children, route = '/' }: AllTestProvidersProps) => {
+const AllTestProviders: FC = ({
+  children,
+  query = mockRouter.query,
+  state
+}: AllTestProvidersProps) => {
   const store = configureStore({
     reducer: rootReducer,
-    devTools: false
+    devTools: false,
+    preloadedState: state
   })
-  const history = createMemoryHistory()
-
-  history.push(route)
 
   return (
-    <Provider store={store}>
-      <Router history={history}>{children}</Router>
-    </Provider>
+    <RouterContext.Provider value={{ ...mockRouter, query } as any}>
+      <Provider store={store}>{children}</Provider>
+    </RouterContext.Provider>
   )
 }
 
 type CustomRenderOptions = {
-  initialState?: RootState
-  route?: string
+  query?: {}
+  state?: RootState
 }
 
-export const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
-  const wrapper = (props: { children?: ReactNode }) => <AllTestProviders {...props} {...options} />
+type WrapperProps = { children?: ReactNode }
+
+const customRender = (ui: ReactElement, options?: CustomRenderOptions) => {
+  const wrapper = (props: WrapperProps) => <AllTestProviders {...props} {...options} />
 
   return render(ui, { wrapper })
 }

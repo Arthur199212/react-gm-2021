@@ -2,7 +2,6 @@ import React, { ReactNode, RefObject } from 'react'
 import classNames from 'classnames'
 import { useScrollLock } from '@app/hooks'
 import { ModalTestIds } from './Modal.contants'
-import './Modal.scss'
 
 type ModalProps = {
   children?: ReactNode

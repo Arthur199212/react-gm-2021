@@ -1,5 +1,4 @@
 import React, { DetailedHTMLProps, InputHTMLAttributes } from 'react'
-import './CheckboxFormField.scss'
 
 type CheckboxFormFieldProps = DetailedHTMLProps<
   InputHTMLAttributes<HTMLInputElement>,

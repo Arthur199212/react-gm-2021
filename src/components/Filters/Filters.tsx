@@ -7,9 +7,8 @@ import {
   setFilter,
   setSortBy,
   SortBy
-} from '@app/pages/Search/store'
+} from '@app/features/SearchPage/store'
 import { FiltersTestIds, SORT_BY_OPTIONS, TABS } from './Filters.constants'
-import './Filters.scss'
 
 export const Filters = () => {
   const dispatch = useAppDispatch()

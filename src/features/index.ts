@@ -1,0 +1,6 @@
+export * from './AddMovieForm'
+export * from './DeleteMovieForm'
+export * from './EditMovieForm'
+export * from './MoviePage'
+export * from './NotFoundPage'
+export * from './SearchPage'

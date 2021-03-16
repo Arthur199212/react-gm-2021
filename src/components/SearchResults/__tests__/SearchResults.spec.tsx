@@ -1,60 +1,63 @@
 import { screen } from '@testing-library/react'
-import { rest } from 'msw'
 import React from 'react'
-import { Route } from 'react-router-dom'
 import { SearchResults, SearchResultsTestIds } from '@app/components'
-import { API_URL } from '@app/config'
-import { RoutePath } from '@app/routes'
 import { render } from '@app/tests/testing-utils'
-import { server } from '@app/tests/mocks/server'
+import { INITIAL_APP_STATE, RootState } from '@app/store'
+import { MOCK_MOVIES } from '@app/tests/mocks/mock-data'
+import { SearchStatus } from '@app/features/SearchPage/store'
 
 describe('SearchResults Component', () => {
-  const route = '/search/test'
+  it('should render properly', () => {
+    const state: RootState = {
+      ...INITIAL_APP_STATE,
+      search: {
+        ...INITIAL_APP_STATE.search,
+        movies: MOCK_MOVIES,
+        status: SearchStatus.SUCCESS,
+        totalAmount: MOCK_MOVIES.length
+      }
+    }
+    render(<SearchResults />, { state })
 
-  it('should handle query URL param', async () => {
-    render(
-      <Route path={RoutePath.SEARCH_RESULTS}>
-        <SearchResults />
-      </Route>,
-      { route }
-    )
-
-    expect(await screen.findByTestId(SearchResultsTestIds.CONTAINER)).toBeInTheDocument()
+    expect(screen.getByTestId(SearchResultsTestIds.CONTAINER)).toBeInTheDocument()
   })
 
-  it('should work properly in case of an error', async () => {
-    server.use(
-      rest.get(`${API_URL}/movies`, (req, res, ctx) => {
-        return res(ctx.status(500))
-      })
-    )
-    render(
-      <Route path={RoutePath.SEARCH_RESULTS}>
-        <SearchResults />
-      </Route>,
-      { route }
-    )
+  it('should show loadin spinner', () => {
+    const state: RootState = {
+      ...INITIAL_APP_STATE,
+      search: {
+        ...INITIAL_APP_STATE.search,
+        status: SearchStatus.LOADING
+      }
+    }
+    render(<SearchResults />, { state })
 
-    expect(
-      await screen.findByText(/Sorry, but nothing matched your search criteria/i)
-    ).toBeInTheDocument()
+    expect(screen.getByTestId(SearchResultsTestIds.SPINNER)).toBeInTheDocument()
   })
 
-  it('should work properly in case of no data recieved', async () => {
-    server.use(
-      rest.get(`${API_URL}/movies`, (req, res, ctx) => {
-        return res(ctx.json({ data: [], limit: 8, offset: 0, totalAmount: 0 }))
-      })
-    )
-    render(
-      <Route path={RoutePath.SEARCH_RESULTS}>
-        <SearchResults />
-      </Route>,
-      { route }
-    )
+  it('should work properly in case of an error', () => {
+    const state: RootState = {
+      ...INITIAL_APP_STATE,
+      search: {
+        ...INITIAL_APP_STATE.search,
+        status: SearchStatus.ERROR
+      }
+    }
+    render(<SearchResults />, { state })
 
-    expect(
-      await screen.findByText(/Sorry, but nothing matched your search criteria/i)
-    ).toBeInTheDocument()
+    expect(screen.getByText(/Sorry, but nothing matched your search criteria/i)).toBeInTheDocument()
+  })
+
+  it('should work properly in case of no data recieved', () => {
+    const state: RootState = {
+      ...INITIAL_APP_STATE,
+      search: {
+        ...INITIAL_APP_STATE.search,
+        status: SearchStatus.NO_RESULTS
+      }
+    }
+    render(<SearchResults />, { state })
+
+    expect(screen.getByText(/Sorry, but nothing matched your search criteria/i)).toBeInTheDocument()
   })
 })

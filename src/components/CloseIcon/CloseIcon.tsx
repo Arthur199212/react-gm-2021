@@ -1,6 +1,5 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
 import classNames from 'classnames'
-import './CloseIcon.scss'
 
 type CloseIconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> & {
   topRight?: boolean

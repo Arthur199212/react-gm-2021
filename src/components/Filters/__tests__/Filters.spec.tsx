@@ -1,16 +1,10 @@
-import { fireEvent, render } from '@testing-library/react'
+import { fireEvent } from '@testing-library/react'
 import React from 'react'
-import { Provider } from 'react-redux'
 import { DropdownItemTestIds, Filters, FiltersTestIds } from '@app/components'
-import { store } from '@app/store'
+import { render } from '@app/tests/testing-utils'
 
 describe('Filters Component', () => {
-  const setup = () =>
-    render(
-      <Provider store={store}>
-        <Filters />
-      </Provider>
-    )
+  const setup = () => render(<Filters />)
 
   it('should show dropdown if ShowMoreButton was chicked', () => {
     const { getByTestId, getAllByTestId } = setup()

@@ -1,30 +1,19 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import React from 'react'
 import { DualRingSpinner, MovieCard, NoSearchResults } from '@app/components'
-import { useAppDispatch, useAppSelector } from '@app/hooks'
+import { useAppSelector } from '@app/hooks'
 import {
-  fetchMoviesThunk,
   SearchStatus,
   selectFilteredAndSortedMovies,
   selectSearchStatus,
   selectSearchTotalAmount
-} from '@app/pages/Search/store'
+} from '@app/features/SearchPage/store'
 import { sortGenresAlphabetically } from '@app/utils'
 import { SearchResultsTestIds } from './SearchResults.constants'
-import './SearchResults.scss'
 
 export const SearchResults = () => {
-  const dispatch = useAppDispatch()
   const movies = useAppSelector(selectFilteredAndSortedMovies)
   const status = useAppSelector(selectSearchStatus)
   const totalAmount = useAppSelector(selectSearchTotalAmount)
-  const { query } = useParams<{ query: string }>()
-
-  useEffect(() => {
-    if (query) {
-      dispatch(fetchMoviesThunk(query))
-    }
-  }, [dispatch, query])
 
   if (status === SearchStatus.NO_RESULTS || status === SearchStatus.ERROR) {
     return <NoSearchResults />
@@ -33,7 +22,7 @@ export const SearchResults = () => {
   if (status === SearchStatus.LOADING) {
     return (
       <div className='search-results-container centered'>
-        <DualRingSpinner />
+        <DualRingSpinner data-testid={SearchResultsTestIds.SPINNER} />
       </div>
     )
   }

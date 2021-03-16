@@ -1,5 +1,4 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
-import './DualRingSpinner.scss'
 
 type DualRingSpinnerProps = DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
 

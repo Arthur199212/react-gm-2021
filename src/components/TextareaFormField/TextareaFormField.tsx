@@ -1,7 +1,6 @@
 import { FieldHookConfig, useField } from 'formik'
 import React from 'react'
 import { TextareaBox, TextareaBoxProps } from '@app/components'
-import './TextareaFormField.scss'
 
 type TextareaFormFieldProps = TextareaBoxProps &
   FieldHookConfig<{}> & {

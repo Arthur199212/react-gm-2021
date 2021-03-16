@@ -1,19 +1,17 @@
+import Link from 'next/link'
 import React, { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
 import {
   Card,
   CardMedia,
-  DeleteMovieForm,
   Dropdown,
   DropdownItem,
-  EditMovieForm,
   Modal,
   SmallModal,
   ShowMoreButton
 } from '@app/components'
+import { DeleteMovieForm, EditMovieForm } from '@app/features'
 import { useClickOutside } from '@app/hooks'
 import { MovieCardTestIds } from './MovieCard.constants'
-import './MovieCard.scss'
 
 enum MovieCardDropdownType {
   DELETE = 'delete',
@@ -54,8 +52,10 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
     <>
       <Card>
         <div className='image-container'>
-          <Link className='card-media-link' to={`/movie/${id}`}>
-            <CardMedia image={image} title={title} />
+          <Link href={`/movie/${id}`}>
+            <a className='card-media-link'>
+              <CardMedia image={image} title={title} />
+            </a>
           </Link>
           <ShowMoreButton open={dropdownOpen} onClick={() => setDropdownOpen(!dropdownOpen)} />
           <Dropdown data-testid={MovieCardTestIds.DROPDOWN} elRef={dropdownRef} open={dropdownOpen}>
@@ -67,7 +67,7 @@ export const MovieCard = ({ description, id, image, rating, release, title }: Mo
             </DropdownItem>
           </Dropdown>
         </div>
-        <Link to={`/movie/${id}`}>
+        <Link href={`/movie/${id}`}>
           <h2 className='title text-truncate'>{title}</h2>
         </Link>
         <div className='description text-truncate'>{description}</div>

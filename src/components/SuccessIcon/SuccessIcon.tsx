@@ -1,5 +1,4 @@
 import React, { DetailedHTMLProps, HTMLAttributes } from 'react'
-import './SuccessIcon.scss'
 
 type SuccessIconProps = DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
 
